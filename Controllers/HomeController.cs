@@ -13,7 +13,7 @@ namespace BatemanCafeteria.Controllers
             return View();
         }
 
-        public ActionResult About()
+        public ActionResult Cart()
         {
             ViewBag.Message = "Your application description page.";
 
@@ -23,6 +23,13 @@ namespace BatemanCafeteria.Controllers
         public ActionResult Contact()
         {
             ViewBag.Message = "Your contact page.";
+
+            return View();
+        }
+
+        public ActionResult OrderStatus()
+        {
+            ViewBag.Message = "Your order status page.";
 
             return View();
         }

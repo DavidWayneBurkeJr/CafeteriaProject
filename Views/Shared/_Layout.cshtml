@@ -1,9 +1,11 @@
 ﻿<!DOCTYPE html>
 <html>
-<head>
+<head runat="server">
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>@ViewBag.Title - My ASP.NET Application</title>
+    <title>@ViewBag.Title - MMB Cafeteria</title>
+    <link runat="server" rel="shortcut icon" href="favicon.ico" type="image/x-icon" />
+    <link runat="server" rel="icon" href="favicon.ico" type="image/ico" />
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
 
@@ -22,20 +24,30 @@
                 </a>
             </div>
             <div class="navbar-collapse collapse">
-                <ul class="nav navbar-nav">
-                    <li>@Html.ActionLink("Home", "Index", "Home")</li>
-                    <li>@Html.ActionLink("About", "About", "Home")</li>
-                    <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
-                </ul>
-                @Html.Partial("_LoginPartial")
-            </div>
+                <div class="black-line-underline-left">
+                    <ul class="nav navbar-nav navbar-left">
+                        <li>@Html.ActionLink("Menu", "Index", "Home")</li>
+                        <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
+                    </ul>
+                    <div class="black-line"></div>
+                    <div class="green-line"></div>
+                </div>
+                <div class="black-line-underline-right">
+                    <ul class="nav navbar-nav navbar-right">
+                        <li>@Html.ActionLink("Order Status", "OrderStatus", "Home")</li>
+                        <li>@Html.ActionLink("Cart", "Cart", "Home")</li>
+                    </ul>
+                    <div class="black-line"></div>
+                    <div class="green-line"></div>
+                    @*@Html.Partial("_LoginParti</div>al")*@
+                </div>
         </div>
     </div>
     <div class="container body-content">
         @RenderBody()
         <hr />
         <footer>
-            <p>&copy; @DateTime.Now.Year - My ASP.NET Application</p>
+            <h4>Hours of Operation</h4>
         </footer>
     </div>
 

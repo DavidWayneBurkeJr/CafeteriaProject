@@ -1082,11 +1082,12 @@ html {
   -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
 }
 body {
-  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
   font-size: 14px;
   line-height: 1.42857143;
   color: #333;
   background-color: #fff;
+  letter-spacing: 4px;
 }
 input,
 button,
@@ -1268,15 +1269,21 @@ h1,
 }
 h2,
 .h2 {
-  font-size: 30px;
+    font-size: 30px;
 }
 h3,
 .h3 {
   font-size: 24px;
+  color: #777;
+  user-select: none;
+  -ms-user-select: none;
+  -moz-user-select: none;
 }
 h4,
 .h4 {
-  font-size: 18px;
+    font-size: 18px;
+    color: #04954A;
+    font-style: italic;
 }
 h5,
 .h5 {
@@ -3979,11 +3986,14 @@ select[multiple].input-group-sm > .input-group-btn > .btn {
 .nav > li {
   position: relative;
   display: block;
+  margin-left: 20%;
 }
 .nav > li > a {
   position: relative;
   display: block;
   padding: 10px 15px;
+  font-size: x-large;
+  min-width: 212.55px;
 }
 .nav > li > a:hover,
 .nav > li > a:focus {
@@ -4328,6 +4338,7 @@ select[multiple].input-group-sm > .input-group-btn > .btn {
 }
 .navbar-nav {
   margin: 7.5px -15px;
+  width: 100%;
 }
 .navbar-nav > li > a {
   padding-top: 10px;
@@ -4499,8 +4510,8 @@ select[multiple].input-group-sm > .input-group-btn > .btn {
   }
 }
 .navbar-default {
-  background-color: #f8f8f8;
-  border-color: #e7e7e7;
+  background-color: #fff;
+  border-color: #fff;
 }
 .navbar-default .navbar-brand {
   color: #777;
