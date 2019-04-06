@@ -6,7 +6,7 @@ using System.Web;
 
 namespace BatemanCafeteria.Models
 {
-    public class OrderItemModel
+    public class Caf_OrderItemModel
     {
         [Key]
         public int OrderItemID { get; set; }
@@ -14,6 +14,8 @@ namespace BatemanCafeteria.Models
         public int ItemID { get; set; }
         public int Quantity { get; set; }
         public decimal UnitPrice { get; set; }
-        public String Special_instructions { get; set; }
+        public string Special_instructions { get; set; }
+        public virtual Caf_MenuItemModel MenuItem { get; set; }
+        public virtual Caf_InvoiceModel Invoice { get; set; }
     }
 }

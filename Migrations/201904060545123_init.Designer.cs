@@ -13,7 +13,7 @@ namespace BatemanCafeteria.Migrations
         
         string IMigrationMetadata.Id
         {
-            get { return "201904020036243_init"; }
+            get { return "201904060545123_init"; }
         }
         
         string IMigrationMetadata.Source

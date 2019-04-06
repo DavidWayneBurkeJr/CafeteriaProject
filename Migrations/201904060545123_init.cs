@@ -7,6 +7,59 @@ namespace BatemanCafeteria.Migrations
     {
         public override void Up()
         {
+            CreateTable(
+                "dbo.CartModels",
+                c => new
+                    {
+                        RecordID = c.Int(nullable: false, identity: true),
+                        CartID = c.Int(nullable: false),
+                        ItemID = c.Int(nullable: false),
+                    })
+                .PrimaryKey(t => t.RecordID);
+            
+            CreateTable(
+                "dbo.InvoiceModels",
+                c => new
+                    {
+                        InvoiceID = c.Int(nullable: false, identity: true),
+                        Customer_name = c.String(unicode: false),
+                        Customer_email = c.String(unicode: false),
+                        Customer_phone = c.String(unicode: false),
+                        Order_date = c.DateTime(nullable: false, precision: 0),
+                        Order_time = c.String(unicode: false),
+                        Order_total = c.Decimal(nullable: false, precision: 18, scale: 2),
+                        Payment_status = c.Boolean(nullable: false),
+                    })
+                .PrimaryKey(t => t.InvoiceID);
+            
+            CreateTable(
+                "dbo.OrderItemModels",
+                c => new
+                    {
+                        OrderItemID = c.Int(nullable: false, identity: true),
+                        InvoiceID = c.Int(nullable: false),
+                        ItemID = c.Int(nullable: false),
+                        Quantity = c.Int(nullable: false),
+                        UnitPrice = c.Decimal(nullable: false, precision: 18, scale: 2),
+                        Special_instructions = c.String(unicode: false),
+                    })
+                .PrimaryKey(t => t.OrderItemID)
+                .ForeignKey("dbo.InvoiceModels", t => t.InvoiceID, cascadeDelete: true)
+                .Index(t => t.InvoiceID);
+            
+            CreateTable(
+                "dbo.MenuItemModels",
+                c => new
+                    {
+                        MenuID = c.Int(nullable: false, identity: true),
+                        Title = c.String(unicode: false),
+                        Price = c.Decimal(nullable: false, precision: 18, scale: 2),
+                        Description = c.String(unicode: false),
+                        Calories = c.Int(nullable: false),
+                        ImgLocation = c.String(unicode: false),
+                    })
+                .PrimaryKey(t => t.MenuID);
+            
             //CreateTable(
             //    "dbo.AspNetRoles",
             //    c => new
@@ -83,17 +136,23 @@ namespace BatemanCafeteria.Migrations
             //DropForeignKey("dbo.AspNetUserLogins", "UserId", "dbo.AspNetUsers");
             //DropForeignKey("dbo.AspNetUserClaims", "UserId", "dbo.AspNetUsers");
             //DropForeignKey("dbo.AspNetUserRoles", "RoleId", "dbo.AspNetRoles");
+            DropForeignKey("dbo.OrderItemModels", "InvoiceID", "dbo.InvoiceModels");
             //DropIndex("dbo.AspNetUserLogins", new[] { "UserId" });
             //DropIndex("dbo.AspNetUserClaims", new[] { "UserId" });
             //DropIndex("dbo.AspNetUsers", "UserNameIndex");
             //DropIndex("dbo.AspNetUserRoles", new[] { "RoleId" });
             //DropIndex("dbo.AspNetUserRoles", new[] { "UserId" });
             //DropIndex("dbo.AspNetRoles", "RoleNameIndex");
+            DropIndex("dbo.OrderItemModels", new[] { "InvoiceID" });
             //DropTable("dbo.AspNetUserLogins");
             //DropTable("dbo.AspNetUserClaims");
             //DropTable("dbo.AspNetUsers");
             //DropTable("dbo.AspNetUserRoles");
             //DropTable("dbo.AspNetRoles");
+            DropTable("dbo.MenuItemModels");
+            DropTable("dbo.OrderItemModels");
+            DropTable("dbo.InvoiceModels");
+            DropTable("dbo.CartModels");
         }
     }
 }
