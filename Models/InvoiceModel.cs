@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Web;
 
@@ -7,6 +8,7 @@ namespace BatemanCafeteria.Models
 {
     public class InvoiceModel
     {
+        [Key]
         public int InvoiceID { get; set; }
         public String Customer_name { get; set;}
         public String Customer_email { get; set; }

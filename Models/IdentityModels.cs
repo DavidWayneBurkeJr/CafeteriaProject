@@ -20,6 +20,10 @@ namespace BatemanCafeteria.Models
 
     public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
     {
+        public DbSet<InvoiceModel> Caf_Invoices { get; set; }
+        public DbSet<CartModel> Caf_Carts { get; set; }
+        public DbSet<OrderItemModel> Caf_OrderItems { get; set; }
+        public DbSet<MenuItemModel> Caf_MenuItems { get; set; }
         public ApplicationDbContext()
             : base("DefaultConnection", throwIfV1Schema: false)
         {
