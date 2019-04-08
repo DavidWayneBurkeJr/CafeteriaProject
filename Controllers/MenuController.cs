@@ -24,15 +24,15 @@ namespace BatemanCafeteria.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include ="Title, Price, Description, Calories, ImgLocation, Category")]Caf_MenuItemModel menuItem)
+        public ActionResult Create(Caf_MenuItemModel menuItem)
         {
             if (ModelState.IsValid)
             {
                 applicationDbContext.Caf_MenuItems.Add(menuItem);
                 applicationDbContext.SaveChanges();
-                return RedirectToAction("Menu", "Home", menuItem.Category.ToString());
+                return RedirectToAction("Menu", "Home", new { id = menuItem.Category.ToString() });
             }
-            return RedirectToAction("Index", "Home");
+            return View(menuItem);
         }
     }
 }

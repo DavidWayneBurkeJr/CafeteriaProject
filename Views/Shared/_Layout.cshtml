@@ -10,6 +10,7 @@
     @Scripts.Render("~/bundles/modernizr")
 
 </head>
+
 <body>
     @if (this.User.IsInRole("Caf_Admin"))
     {
@@ -80,7 +81,8 @@
                     <div class="black-line-underline-right">
                         <ul class="nav navbar-nav navbar-right">
                             <li>@Html.ActionLink("Order Status", "OrderStatus", "Home")</li>
-                            <li><a href="@Url.Action("CartView", "ShoppingCart")">Cart<img src="~/Images/shoppingBasket.png" class="cart" /></a> </li>
+                            <li>@{Html.RenderAction("CartSummary", "ShoppingCart");}
+                            </li>
                         </ul>
                         <div class="black-line"></div>
                         <div class="green-line"></div>
@@ -103,3 +105,4 @@
     @RenderSection("scripts", required: false)
 </body>
 </html>
+
