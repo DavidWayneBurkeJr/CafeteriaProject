@@ -12,7 +12,7 @@ namespace BatemanCafeteria.Controllers
     {
         ApplicationDbContext applicationDbContext = new ApplicationDbContext();
         // GET: ShoppingCart
-        public ActionResult Index()
+        public ActionResult CartView()
         {
             var cart = ShoppingCart.GetCart(this.HttpContext);
             var viewModel = new ShoppingCartViewModel
@@ -31,7 +31,7 @@ namespace BatemanCafeteria.Controllers
             var cart = ShoppingCart.GetCart(this.HttpContext);
 
             cart.AddToCart(addedItem);
-            return RedirectToAction("Index");
+            return RedirectToAction("CartView");
         }
 
         [HttpPost]

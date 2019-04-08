@@ -1,0 +1,65 @@
+﻿@model IEnumerable<BatemanCafeteria.Models.Caf_MenuItemModel>
+<div class="row flex">
+    @if (User.IsInRole("Caf_Admin") || User.IsInRole("Secretary"))
+    {
+        <p>
+            @Html.ActionLink("Create New", "Create", "Menu")
+        </p>
+    }
+
+    @foreach (var item in Model)
+    {
+        <div class="col-md-4">
+            <div class="menuitem">
+                <div class="menu-img">
+                    <img src="@item.ImgLocation" alt="@item.Title" />
+                </div>
+                <h4>
+                    @Html.DisplayFor(modelItem => item.Title)
+                </h4>
+
+                <h5>
+                    @Html.DisplayFor(modelItem => item.Description)
+                </h5>
+                <div>
+                    <div class="col-md-6">
+                        <h6>
+                            Calories:
+                        </h6>
+                    </div>
+                    <div class="col-md-6">
+                        <h6>
+                            @Html.DisplayFor(modelItem => item.Calories)
+                        </h6>
+                    </div>
+                </div>
+                <div>
+                    <div class="col-md-6">
+                        <h5>
+                            Price:
+                        </h5>
+                    </div>
+                    <div class="col-md-6">
+                        <h5>
+                            $@Html.DisplayFor(modelItem => item.Price)
+                        </h5>
+                    </div>
+                </div>
+                @if (User.IsInRole("Caf_Admin") || User.IsInRole("Secretary"))
+                {
+                    <p>
+                        @Html.ActionLink("Edit", "Edit", new { id = item.MenuID }) |
+                        @Html.ActionLink("Details", "Details", new { id = item.MenuID }) |
+                        @Html.ActionLink("Delete", "Delete", new { id = item.MenuID })
+                    </p>
+                }
+                else
+                {
+                    <div class="btn btn-primary">
+                        @Html.ActionLink("Add To Cart", "AddToCart", "ShoppingCart", new { id = item.MenuID }, "")
+                    </div>
+                }
+            </div>
+        </div>
+    }
+</div>

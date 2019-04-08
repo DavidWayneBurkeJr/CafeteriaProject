@@ -120,12 +120,61 @@ textarea {
     position: relative;
     bottom: 3px;
     left: 3px;
+    text-decoration: none;
+}
+
+.logoff{
+    padding-top: 11px;
+    padding-bottom: 13px;
 }
 
 .clickable {
     transition: all 1.4s ease-in-out;
 }
 
-.active {
+a:hover{
+    text-decoration: none;
+}
 
+.menuitem {
+    height: 350px;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+    border-radius: 5px;
+    margin: 10px;
+    padding: 20px;
+}
+
+    .menuitem > div > a {
+        text-align: center;
+        color: #ffffff;
+    }
+
+.menu-img {
+    border: solid;
+    border-color: #04954A;
+    height: 120px;
+    width: 80%;
+    margin: auto;
+}
+
+    .menu-img > img {
+        object-fit: contain;
+        margin: auto;
+        max-width: 100%;
+        max-height: 100%;
+    }
+.menuitem > h4{
+    text-align: center;
+}
+
+.menuitem > h5 {
+    letter-spacing:normal;
+    text-indent: 20px;
+}
+
+
+
+.menuitem > div > .col-md-6 > h6, .menuitem > div > .col-md-6 > h5{
+    font-style: italic;
+    text-align: right;
 }

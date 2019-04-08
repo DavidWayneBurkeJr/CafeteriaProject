@@ -35,7 +35,8 @@ namespace BatemanCafeteria.Models
                     ItemID = menuItem.MenuID,
                     CartID = ShoppingCartID,
                     Quantity = 1,
-                    DateCreated = DateTime.Now
+                    DateCreated = DateTime.Now,
+                    MenuItem = menuItem
                 };
                 applicationDbContext.Caf_Carts.Add(cartItem);
             }

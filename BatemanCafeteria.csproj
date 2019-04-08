@@ -190,6 +190,7 @@
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
+    <Compile Include="Controllers\MenuController.cs" />
     <Compile Include="Controllers\ShoppingCartController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -215,6 +216,7 @@
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Models\Caf_MenuItemModel.cs" />
     <Compile Include="Models\Caf_OrderItemModel.cs" />
+    <Compile Include="Models\MenuItems.cs" />
     <Compile Include="Models\ShoppingCart.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
@@ -232,10 +234,12 @@
     <Content Include="Content\Site.css" />
     <Content Include="Images\Burger%402x.png" />
     <Content Include="Images\Burger.png" />
+    <Content Include="Images\ChickenFingers.png" />
     <Content Include="Images\Hot drinks%402x.png" />
     <Content Include="Images\Hot drinks.png" />
     <Content Include="Images\shoppingBasket.png" />
     <Content Include="Images\logo.png" />
+    <Content Include="Images\shutdown.png" />
     <Content Include="Images\Symbol 11 – 1%402x.png" />
     <Content Include="Images\Symbol 11 – 1.png" />
     <Content Include="Images\Symbol 13 – 1%402x.png" />
@@ -291,10 +295,12 @@
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
     <Content Include="Views\Home\OrderStatus.cshtml" />
     <Content Include="Views\ShoppingCart\CartView.cshtml" />
-    <Content Include="Views\Menu\MenuView.cshtml" />
+    <Content Include="Views\Home\Menu.cshtml" />
+    <Content Include="Views\Menu\Create.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Images\MenuItems\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />
