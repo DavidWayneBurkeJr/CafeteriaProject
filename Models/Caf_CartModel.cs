@@ -11,7 +11,7 @@ namespace BatemanCafeteria.Models
         [Key]
         public int RecordID { get; set; }
         public string CartID { get; set; }
-        public int ItemID { get; set; }
+        public int MenuID { get; set; }
         public int Quantity { get; set; }
         public string SpecialInstructions { get; set; }
         public System.DateTime DateCreated { get; set; }

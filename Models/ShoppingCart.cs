@@ -26,13 +26,13 @@ namespace BatemanCafeteria.Models
         {
             var cartItem = applicationDbContext.Caf_Carts.SingleOrDefault(
                 c => c.CartID == ShoppingCartID
-                && c.ItemID == menuItem.MenuID);
+                && c.MenuID == menuItem.MenuID);
 
             if(cartItem == null)
             {
                 cartItem = new Caf_CartModel
                 {
-                    ItemID = menuItem.MenuID,
+                    MenuID = menuItem.MenuID,
                     CartID = ShoppingCartID,
                     Quantity = 1,
                     DateCreated = DateTime.Now
@@ -115,7 +115,7 @@ namespace BatemanCafeteria.Models
             {
                 var orderDetail = new Caf_OrderItemModel
                 {
-                    ItemID = item.ItemID,
+                    ItemID = item.MenuID,
                     InvoiceID = invoice.InvoiceID,
                     UnitPrice = item.MenuItem.Price,
                     Quantity = item.Quantity,
