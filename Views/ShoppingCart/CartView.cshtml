@@ -16,11 +16,11 @@
                     // Successful requests get here
                     // Update the page elements
                     if (data.ItemCount == 0) {
-                        $('#row-' + data.DeleteId).fadeOut('slow');
+                        $('#row-' + data.DeleteID).fadeOut('slow');
                     } else {
-                        $('#item-count-' + data.DeleteId).text(data.ItemCount);
+                        $('#item-count-' + data.DeleteID).text(data.ItemCount);
                     }
-                    $('#cart-total').text(data.CartTotal);
+                    $('#cart-total').text('$' + data.CartTotal);
                     $('#update-message').text(data.Message);
                     $('#cart-status').text('Cart (' + data.CartCount + ')');
                 });
@@ -38,13 +38,13 @@
 </div>
 <table>
     <tr>
-        <th>
-            Album Name
+        <th class="col-md-4">
+            Item Name
         </th>
-        <th>
+        <th class="col-md-4">
             Price (each)
         </th>
-        <th>
+        <th class="col-md-4">
             Quantity
         </th>
         <th></th>
@@ -52,20 +52,22 @@
     @foreach (var item in Model.CartItems)
     {
         <tr id="row-@item.RecordID">
-            <td>
-                @*@Html.ActionLink(item.MenuItem.Title, "Details", "Store", new { id = item.ItemID }, null)*@
+            <td class="col-md-4">
+                @*@Html.ActionLink(item.MenuItem.Title, "Details", "Store", new { id = item.MenuID }, null)*@
                 @item.MenuItem.Title
             </td>
-            <td>
-                @item.MenuItem.Price
+            <td class="col-md-4">
+                $@item.MenuItem.Price
             </td>
-            <td id="item-count-@item.RecordID">
+            <td id="item-count-@item.RecordID" class="col-md-4">
                 @item.Quantity
             </td>
             <td>
-                <a href="#" class="RemoveLink"
+                <a class="RemoveLink"
                    data-id="@item.RecordID">
-                    Remove from cart
+                    <div class="x">
+                        <span>X</span>
+                    </div>
                 </a>
             </td>
         </tr>
@@ -77,7 +79,7 @@
         <td></td>
         <td></td>
         <td id="cart-total">
-            @Model.CartTotal
+            $@Model.CartTotal
         </td>
     </tr>
 </table>

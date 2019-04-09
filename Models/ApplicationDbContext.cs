@@ -23,6 +23,7 @@ namespace BatemanCafeteria.Models
         public virtual DbSet<Caf_CartModel> Caf_Carts { get; set; }
         public virtual DbSet<Caf_OrderItemModel> Caf_OrderItems { get; set; }
         public virtual DbSet<Caf_MenuItemModel> Caf_MenuItems { get; set; }
+        public virtual DbSet<Caf_FoodStatusModel> Caf_FoodStatuses { get; set; }
         #endregion tables
 
         public static ApplicationDbContext Create()

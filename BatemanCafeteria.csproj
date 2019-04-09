@@ -215,10 +215,19 @@
     <Compile Include="Migrations\201904081921209_anotherFixhopefully.Designer.cs">
       <DependentUpon>201904081921209_anotherFixhopefully.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201904090419585_seedStatuses.cs" />
+    <Compile Include="Migrations\201904090419585_seedStatuses.Designer.cs">
+      <DependentUpon>201904090419585_seedStatuses.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201904090423372_fixName.cs" />
+    <Compile Include="Migrations\201904090423372_fixName.Designer.cs">
+      <DependentUpon>201904090423372_fixName.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\ApplicationDbContext.cs" />
     <Compile Include="Models\Caf_CartModel.cs" />
+    <Compile Include="Models\Caf_FoodStatusModel.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\Caf_InvoiceModel.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
@@ -339,6 +348,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201904081921209_anotherFixhopefully.resx">
       <DependentUpon>201904081921209_anotherFixhopefully.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201904090419585_seedStatuses.resx">
+      <DependentUpon>201904090419585_seedStatuses.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201904090423372_fixName.resx">
+      <DependentUpon>201904090423372_fixName.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

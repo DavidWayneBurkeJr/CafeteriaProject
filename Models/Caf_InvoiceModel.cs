@@ -17,6 +17,8 @@ namespace BatemanCafeteria.Models
         public string Order_time { get; set; }
         public decimal Order_total { get; set; }
         public bool Payment_status { get; set; }
+        public int StatusId { get; set; }
+        public virtual Caf_FoodStatusModel FoodStatus { get; set; }
         public List<Caf_OrderItemModel> Order_items { get; set; }
     }
 }
