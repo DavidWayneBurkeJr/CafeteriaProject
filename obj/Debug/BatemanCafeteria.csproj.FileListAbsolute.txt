@@ -175,6 +175,8 @@ C:\Users\David\source\repos\BatemanCafeteria\obj\Debug\BatemanCafeteria.Migratio
 C:\Users\David\source\repos\BatemanCafeteria\obj\Debug\BatemanCafeteria.Migrations._46update.resources
 C:\Users\David\source\repos\BatemanCafeteria\obj\Debug\BatemanCafeteria.Migrations.modelUpdate.resources
 C:\Users\David\source\repos\BatemanCafeteria\obj\Debug\BatemanCafeteria.Migrations.anotherFixhopefully.resources
-C:\Users\David\source\repos\BatemanCafeteria\obj\Debug\BatemanCafeteria.csprojAssemblyReference.cache
 C:\Users\David\source\repos\BatemanCafeteria\obj\Debug\BatemanCafeteria.Migrations.seedStatuses.resources
 C:\Users\David\source\repos\BatemanCafeteria\obj\Debug\BatemanCafeteria.Migrations.fixName.resources
+C:\Users\David\source\repos\BatemanCafeteria\obj\Debug\BatemanCafeteria.Migrations.updateModels.resources
+C:\Users\David\source\repos\BatemanCafeteria\obj\Debug\BatemanCafeteria.Migrations.updateModels1.resources
+C:\Users\David\source\repos\BatemanCafeteria\obj\Debug\BatemanCafeteria.Migrations.updateModels2.resources

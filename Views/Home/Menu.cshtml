@@ -1,11 +1,11 @@
 ﻿@model IEnumerable<BatemanCafeteria.Models.Caf_MenuItemModel>
+@if (User.IsInRole("Caf_Admin") || User.IsInRole("Secretary"))
+{
+    <div class="btn btn-primary">
+        @Html.ActionLink("Create New", "Create", "Menu")
+    </div>
+}
 <div class="row flex">
-    @if (User.IsInRole("Caf_Admin") || User.IsInRole("Secretary"))
-    {
-        <p>
-            @Html.ActionLink("Create New", "Create", "Menu")
-        </p>
-    }
 
     @foreach (var item in Model)
     {
@@ -50,7 +50,7 @@
                     <p>
                         @Html.ActionLink("Edit", "Edit", new { id = item.MenuID }) |
                         @Html.ActionLink("Details", "Details", new { id = item.MenuID }) |
-                        @Html.ActionLink("Delete", "Delete", new { id = item.MenuID })
+                        @Html.ActionLink("Delete", "Delete", "Menu", new { id = item.MenuID }, "")
                     </p>
                 }
                 else

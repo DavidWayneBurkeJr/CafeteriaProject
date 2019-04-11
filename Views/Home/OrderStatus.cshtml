@@ -1,7 +1,18 @@
-﻿
+﻿@model BatemanCafeteria.Models.Caf_InvoiceModel
 @{
     ViewBag.Title = "OrderStatus";
 }
 
-<h2>OrderStatus</h2>
+<div>
+    <h4>Menu Item</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            Status
+        </dt>
 
+        <dd>
+            @ViewBag.Status
+        </dd>
+        </dl>
+</div>

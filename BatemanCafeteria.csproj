@@ -188,6 +188,7 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\CheckoutController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\MenuController.cs" />
@@ -223,10 +224,23 @@
     <Compile Include="Migrations\201904090423372_fixName.Designer.cs">
       <DependentUpon>201904090423372_fixName.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201904101950379_updateModels.cs" />
+    <Compile Include="Migrations\201904101950379_updateModels.Designer.cs">
+      <DependentUpon>201904101950379_updateModels.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201904102033547_updateModels1.cs" />
+    <Compile Include="Migrations\201904102033547_updateModels1.Designer.cs">
+      <DependentUpon>201904102033547_updateModels1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201904110539425_updateModels2.cs" />
+    <Compile Include="Migrations\201904110539425_updateModels2.Designer.cs">
+      <DependentUpon>201904110539425_updateModels2.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\ApplicationDbContext.cs" />
     <Compile Include="Models\Caf_CartModel.cs" />
+    <Compile Include="Models\Caf_FoodCategories.cs" />
     <Compile Include="Models\Caf_FoodStatusModel.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\Caf_InvoiceModel.cs" />
@@ -251,9 +265,10 @@
     <Content Include="Content\Site.css" />
     <Content Include="Images\Burger%402x.png" />
     <Content Include="Images\Burger.png" />
-    <Content Include="Images\ChickenFingers.png" />
+    <Content Include="Images\MenuItems\ChickenFingers.png" />
     <Content Include="Images\Hot drinks%402x.png" />
     <Content Include="Images\Hot drinks.png" />
+    <Content Include="Images\MenuItems\Hamburger.jpeg" />
     <Content Include="Images\shoppingBasket.png" />
     <Content Include="Images\logo.png" />
     <Content Include="Images\shutdown.png" />
@@ -315,10 +330,13 @@
     <Content Include="Views\Home\Menu.cshtml" />
     <Content Include="Views\Menu\Create.cshtml" />
     <Content Include="Views\ShoppingCart\CartSummaryView.cshtml" />
+    <Content Include="Views\Menu\Delete.cshtml" />
+    <Content Include="Views\Checkout\Checkout.cshtml" />
+    <Content Include="Views\Checkout\Complete.cshtml" />
+    <Content Include="Views\Checkout\CheckoutConfirmation.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Images\MenuItems\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />
@@ -354,6 +372,15 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201904090423372_fixName.resx">
       <DependentUpon>201904090423372_fixName.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201904101950379_updateModels.resx">
+      <DependentUpon>201904101950379_updateModels.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201904102033547_updateModels1.resx">
+      <DependentUpon>201904102033547_updateModels1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201904110539425_updateModels2.resx">
+      <DependentUpon>201904110539425_updateModels2.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

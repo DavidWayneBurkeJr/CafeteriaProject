@@ -24,6 +24,12 @@ namespace BatemanCafeteria.Migrations
                 new Caf_FoodStatusModel() { StatusId = 1, Status = "Received" },
                 new Caf_FoodStatusModel() { StatusId = 2, Status = "Cooking" },
                 new Caf_FoodStatusModel() { StatusId = 3, Status = "Ready For Pickup" });
+
+            context.Caf_FoodCategories.AddOrUpdate(x => x.CategoryId,
+                new Caf_FoodCategories() { CategoryId = 1, Category = "Entrees" },
+                new Caf_FoodCategories() { CategoryId = 2, Category = "Drinks" },
+                new Caf_FoodCategories() { CategoryId = 3, Category = "Snacks" },
+                new Caf_FoodCategories() { CategoryId = 4, Category = "Daily Special" });
         }
     }
 }

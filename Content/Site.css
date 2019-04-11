@@ -221,3 +221,8 @@ tr {
     border-width: 1px;
     height: 70px;
 }
+
+.btn > a {
+    color: #ffffff;
+    text-decoration: none;
+}
