@@ -226,3 +226,57 @@ tr {
     color: #ffffff;
     text-decoration: none;
 }
+
+
+.orderItem {
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+    border-radius: 5px;
+    min-height: 70px;
+    margin-bottom: 15px;
+    display: flex;
+    align-items: center;
+    user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+}
+
+.vl {
+    width: 1px;
+    background-color: rgba(0, 0, 0, 0.1);
+    margin-top: 10px;
+    margin-bottom: 10px;
+    height: 60px;
+}
+
+.statusHeader{
+    text-align: center;
+    margin: auto;
+    padding-bottom: 30px;
+}
+
+.green {
+    color: #04954A;
+}
+
+.red {
+    color: #b00000;
+}
+
+.has-paid {
+    color: rgba(0, 0, 0, 0.1);
+}
+
+.phone {
+    font-size: 9px;
+    color: #04954A;
+}
+
+.has-paid:hover {
+    color: #04954A;
+}
+
+.orderNum {
+    text-align: center;
+    color: #04954A;
+    font-size: large;
+}

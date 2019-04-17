@@ -135,7 +135,7 @@ namespace BatemanCafeteria.Controllers
                 applicationDbContext.Caf_MenuItems.Remove(menuItemModel);
                 applicationDbContext.SaveChanges();
             }
-            catch(DataException dex)
+            catch(DataException)
             {
                 return View();
             }

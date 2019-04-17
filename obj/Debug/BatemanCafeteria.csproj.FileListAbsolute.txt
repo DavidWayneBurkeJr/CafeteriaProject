@@ -180,3 +180,8 @@ C:\Users\David\source\repos\BatemanCafeteria\obj\Debug\BatemanCafeteria.Migratio
 C:\Users\David\source\repos\BatemanCafeteria\obj\Debug\BatemanCafeteria.Migrations.updateModels.resources
 C:\Users\David\source\repos\BatemanCafeteria\obj\Debug\BatemanCafeteria.Migrations.updateModels1.resources
 C:\Users\David\source\repos\BatemanCafeteria\obj\Debug\BatemanCafeteria.Migrations.updateModels2.resources
+C:\Users\David\source\repos\BatemanCafeteria\obj\Debug\BatemanCafeteria.csprojAssemblyReference.cache
+C:\Users\David\source\repos\BatemanCafeteria\bin\Microsoft.AspNet.SignalR.Core.dll
+C:\Users\David\source\repos\BatemanCafeteria\bin\Microsoft.AspNet.SignalR.SystemWeb.dll
+C:\Users\David\source\repos\BatemanCafeteria\bin\Microsoft.AspNet.SignalR.Core.xml
+C:\Users\David\source\repos\BatemanCafeteria\bin\Microsoft.AspNet.SignalR.SystemWeb.xml

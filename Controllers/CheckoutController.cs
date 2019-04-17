@@ -1,5 +1,6 @@
 ﻿using BatemanCafeteria.Models;
 using System;
+using System.Diagnostics;
 using System.Linq;
 using System.Text.RegularExpressions;
 using System.Web.Mvc;
@@ -31,6 +32,9 @@ namespace BatemanCafeteria.Controllers
                     ModelState.AddModelError("", "Incorrect phone number format");
                     return View(invoice);
                 }
+                string phone = Regex.Replace(invoice.Customer_phone, "[^0-9]", "");
+                phone = String.Format("{0:(###) ###-####}", Convert.ToInt64(phone));
+                invoice.Customer_phone = phone;
                 invoice.Payment_status = false;
                 var cart = ShoppingCart.GetCart(this.HttpContext);
                 invoice.Order_total = cart.GetTotal();
