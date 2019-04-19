@@ -23,6 +23,16 @@ namespace BatemanCafeteria.Controllers
             return View(viewModel);
         }
 
+        public ActionResult AddToCartScreen(int id)
+        {
+            Caf_MenuItemModel menuItem = applicationDbContext.Caf_MenuItems.Where(item => item.MenuID == id).First();
+            AddToCartViewModel addToCartView = new AddToCartViewModel
+            {
+                MenuItem = menuItem
+            };
+            return PartialView("_AddToCartScreen", addToCartView);
+        }
+
         public ActionResult AddToCart(int id)
         {
             var addedItem = applicationDbContext.Caf_MenuItems

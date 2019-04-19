@@ -280,3 +280,20 @@ tr {
     color: #04954A;
     font-size: large;
 }
+
+.flex-row {
+    display: flex;
+    flex-direction: row;
+}
+.flex-column {
+    display: flex;
+    flex-direction: column;
+}
+
+.img-area{
+    height: 200px;
+    width: 300px;
+    display: flex;
+    align-items: flex-start;
+    overflow: hidden;
+}

@@ -56,7 +56,7 @@
                 else
                 {
                     <div class="btn btn-primary">
-                        @Html.ActionLink("Add To Cart", "AddToCart", "ShoppingCart", new { id = item.MenuID }, "")
+                        @Html.ActionLink("Add To Cart", "AddToCartScreen", "ShoppingCart", new { id = item.MenuID }, new { @class = "modal-link" })
                     </div>
                 }
             </div>
