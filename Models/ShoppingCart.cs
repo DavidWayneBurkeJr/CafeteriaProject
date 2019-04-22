@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using BatemanCafeteria.ViewModels;
 
 namespace BatemanCafeteria.Models
 {
@@ -22,19 +23,20 @@ namespace BatemanCafeteria.Models
         {
             return GetCart(controller.HttpContext);
         }
-        public void AddToCart(Caf_MenuItemModel menuItem)
+        public void AddToCart(AddToCartViewModel selectedItem)
         {
             var cartItem = applicationDbContext.Caf_Carts.SingleOrDefault(
                 c => c.CartID == ShoppingCartID
-                && c.MenuID == menuItem.MenuID);
+                && c.MenuID == selectedItem.MenuItem.MenuID);
 
             if(cartItem == null)
             {
                 cartItem = new Caf_CartModel
                 {
-                    MenuID = menuItem.MenuID,
+                    MenuID = selectedItem.MenuItem.MenuID,
                     CartID = ShoppingCartID,
-                    Quantity = 1,
+                    Quantity = selectedItem.Quantity,
+                    SpecialInstructions = selectedItem.SpecialInstructions,
                     DateCreated = DateTime.Now
                 };
                 applicationDbContext.Caf_Carts.Add(cartItem);

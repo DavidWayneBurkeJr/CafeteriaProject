@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
@@ -23,25 +24,34 @@ namespace BatemanCafeteria.Controllers
             return View(viewModel);
         }
 
-        public ActionResult AddToCartScreen(int id)
+        [HttpGet]
+        public ActionResult AddToCart(int id)
         {
             Caf_MenuItemModel menuItem = applicationDbContext.Caf_MenuItems.Where(item => item.MenuID == id).First();
             AddToCartViewModel addToCartView = new AddToCartViewModel
             {
                 MenuItem = menuItem
             };
-            return PartialView("_AddToCartScreen", addToCartView);
+            return PartialView("_AddToCart", addToCartView);
         }
 
-        public ActionResult AddToCart(int id)
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult AddToCart(AddToCartViewModel model)
         {
-            var addedItem = applicationDbContext.Caf_MenuItems
-                .Single(item => item.MenuID == id);
-
-            var cart = ShoppingCart.GetCart(this.HttpContext);
-
-            cart.AddToCart(addedItem);
-            return RedirectToAction("CartView");
+            var errors = ModelState.Values.SelectMany(v => v.Errors);
+            Debug.Write(errors);
+            if (ModelState.IsValid)
+            {
+                var cart = ShoppingCart.GetCart(this.HttpContext);
+                cart.AddToCart(model);
+                string category = applicationDbContext.Caf_FoodCategories.Where(x => x.CategoryId == model.MenuItem.CategoryId).First().Category;
+                return RedirectToAction("Menu", "Home", new { category });
+            }
+            else {
+                
+                return RedirectToAction("Index", "Home");
+            }
         }
 
         [HttpPost]

@@ -27,10 +27,12 @@ a, a:hover{
 }
 
 /* Set width on the form input elements since they're 100% wide by default */
-input,
+
 select,
 textarea {
-    max-width: 280px;
+    width: 100%;
+    height: 80px;
+    resize: none;
 }
 
 .black-line-underline-left{
@@ -155,11 +157,10 @@ a:hover{
     }
 
 .menu-img {
-    border: solid;
-    border-color: #04954A;
     height: 120px;
     width: 80%;
     margin: auto;
+    text-align: center;
 }
 
     .menu-img > img {
@@ -296,4 +297,45 @@ tr {
     display: flex;
     align-items: flex-start;
     overflow: hidden;
+}
+
+.align-left {
+    text-align: left !important;
+}
+
+.align-right {
+    text-align: right !important;
+}
+
+.padding-bottom-large {
+    padding-bottom: 50px;
+}
+
+.padding-bottom-medium {
+    padding-bottom: 20px;
+}
+
+.padding-bottom-small {
+    padding-bottom: 10px;
+}
+
+.padding-top-small{
+    padding-top: 7px;
+}
+
+.padding-top-medium{
+    padding-top: 20px;
+}
+
+.description{
+    max-height: 100px;
+    word-wrap: break-word;
+    overflow-y: auto;
+}
+
+.menu-options {
+    position: absolute;
+    bottom: 40px;
+    right: 0;
+    left: 0;
 }

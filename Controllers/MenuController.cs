@@ -1,6 +1,9 @@
 ﻿using BatemanCafeteria.Models;
+using Newtonsoft.Json;
 using System;
+using System.Collections.Generic;
 using System.Data;
+using System.Data.Entity;
 using System.Diagnostics;
 using System.IO;
 using System.Linq;
@@ -25,7 +28,7 @@ namespace BatemanCafeteria.Controllers
         {
             var categories = applicationDbContext.Caf_FoodCategories.ToList();
             ViewBag.Categories = new SelectList(categories, "CategoryId", "Category");
-            return View();
+            return PartialView("_Create");
         }
 
         [Authorize(Roles = "Caf_Admin, Caf_Secretary")]
@@ -119,7 +122,7 @@ namespace BatemanCafeteria.Controllers
                 {
                     return HttpNotFound();
                 }
-                return View(menuItem);
+                return PartialView("_Delete", menuItem);
             }
         }
 
@@ -141,6 +144,45 @@ namespace BatemanCafeteria.Controllers
             }
             Debug.Write(category);
             return RedirectToAction("Menu", "Home", new { category = category });
+        }
+
+        [HttpGet]
+        [Authorize(Roles = "Caf_Admin, Caf_Secretary")]
+        public ActionResult Edit (int? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            else
+            {
+                Caf_MenuItemModel menuItem = applicationDbContext.Caf_MenuItems.Find(id);
+                if (menuItem == null)
+                {
+                    return HttpNotFound();
+                }
+                var categories = applicationDbContext.Caf_FoodCategories.ToList();
+                ViewBag.Categories = new SelectList(categories, "CategoryId", "Category");
+                return PartialView("_Edit", menuItem);
+            }
+        }
+
+        [HttpPost]
+        [Authorize(Roles ="Caf_Admin, Caf_Secretary")]
+        [ValidateAntiForgeryToken]
+        public ActionResult Edit (Caf_MenuItemModel menuItem)
+        {
+            if (ModelState.IsValid)
+            {
+                applicationDbContext.Entry(menuItem).State = EntityState.Modified;
+                applicationDbContext.SaveChanges();
+                string category = applicationDbContext.Caf_FoodCategories.Find(menuItem.CategoryId).Category;
+
+                return RedirectToAction("Menu", "Home", new { category});
+            }
+            IEnumerable<ModelError> allErrors = ModelState.Values.SelectMany(v => v.Errors);
+            var jsonErrors = JsonConvert.SerializeObject(allErrors);
+            return Json(allErrors);
         }
     }
 }

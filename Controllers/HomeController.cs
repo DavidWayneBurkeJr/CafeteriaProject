@@ -42,9 +42,16 @@ namespace BatemanCafeteria.Controllers
 
         public ActionResult Menu(string category)
         {
-            int catId = applicationDbContext.Caf_FoodCategories.Where(x => x.Category == category.Trim()).First().CategoryId;
-            List<Caf_MenuItemModel> menuItems = applicationDbContext.Caf_MenuItems.Where(x => x.CategoryId == catId).ToList();
-            return View(menuItems);
+            if (category != null)
+            {
+                int catId = applicationDbContext.Caf_FoodCategories.Where(x => x.Category == category.Trim()).First().CategoryId;
+                List<Caf_MenuItemModel> menuItems = applicationDbContext.Caf_MenuItems.Where(x => x.CategoryId == catId).ToList();
+                return View(menuItems);
+            }
+            else
+            {
+                return RedirectToAction("Index");
+            }
         }
     }
 }
