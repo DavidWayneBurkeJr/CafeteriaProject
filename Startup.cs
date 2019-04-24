@@ -38,6 +38,22 @@ namespace BatemanCafeteria
 
 
             }
+            if (!roleManager.RoleExists("Caf_Secretary"))
+            {
+                var role = new IdentityRole();
+                role.Name = "Caf_Secretary";
+                roleManager.Create(role);
+
+                var user = new ApplicationUser();
+                user.UserName = "testSecretary@outlook.com";
+                user.Email = "testSecretary@outlook.com";
+                string userPWD = "password";
+                var chkUser = userManager.Create(user, userPWD);
+                if (chkUser.Succeeded)
+                {
+                    var result = userManager.AddToRole(user.Id, "Caf_Secretary");
+                }
+            }
         }
     }
 }

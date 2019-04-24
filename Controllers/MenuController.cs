@@ -13,17 +13,11 @@ using System.Web.Mvc;
 
 namespace BatemanCafeteria.Controllers
 {
+    [Authorize(Roles ="Caf_Secretary")]
     public class MenuController : Controller
     {
         ApplicationDbContext applicationDbContext = new ApplicationDbContext();
 
-        // GET: Menu
-        public ActionResult Index()
-        {
-            return View();
-        }
-
-        [Authorize(Roles = "Caf_Admin, Caf_Secretary")]
         public ActionResult Create()
         {
             var categories = applicationDbContext.Caf_FoodCategories.ToList();
@@ -31,7 +25,6 @@ namespace BatemanCafeteria.Controllers
             return PartialView("_Create");
         }
 
-        [Authorize(Roles = "Caf_Admin, Caf_Secretary")]
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Create(Caf_MenuItemModel menuItem)
@@ -108,7 +101,6 @@ namespace BatemanCafeteria.Controllers
         }
 
         [HttpGet]
-        [Authorize(Roles = "Caf_Admin, Caf_Secretary")]
         public ActionResult Delete(int ? id)
         {
             if (id == null)
@@ -127,7 +119,6 @@ namespace BatemanCafeteria.Controllers
         }
 
         [HttpPost]
-        [Authorize(Roles = "Caf_Admin, Caf_Secretary")]
         [ValidateAntiForgeryToken]
         public ActionResult Delete(int id)
         {
@@ -147,7 +138,6 @@ namespace BatemanCafeteria.Controllers
         }
 
         [HttpGet]
-        [Authorize(Roles = "Caf_Admin, Caf_Secretary")]
         public ActionResult Edit (int? id)
         {
             if (id == null)
@@ -168,7 +158,6 @@ namespace BatemanCafeteria.Controllers
         }
 
         [HttpPost]
-        [Authorize(Roles ="Caf_Admin, Caf_Secretary")]
         [ValidateAntiForgeryToken]
         public ActionResult Edit (Caf_MenuItemModel menuItem)
         {
