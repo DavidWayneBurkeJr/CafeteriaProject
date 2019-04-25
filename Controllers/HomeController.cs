@@ -51,15 +51,7 @@ namespace BatemanCafeteria.Controllers
         [HttpPost]
         public int GetStatus(int id)
         {
-            int stateId;
-            if (id != null)
-            {
-                stateId = applicationDbContext.Caf_Invoices.Find(id).StatusId;
-            }
-            else
-            {
-                stateId = -1;
-            }
+            int stateId = applicationDbContext.Caf_Invoices.Find(id).StatusId;
             return stateId;
         }
 

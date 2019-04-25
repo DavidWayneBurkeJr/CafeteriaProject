@@ -1,5 +1,5 @@
 ﻿@model BatemanCafeteria.Models.Caf_MenuItemModel
-
+@Html.Partial("_ModalExit")
 <div class="modal-body">
     @using (Html.BeginForm("Create", "Menu", FormMethod.Post, new { enctype = "multipart/form-data" }))
     {

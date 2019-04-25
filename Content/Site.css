@@ -384,6 +384,7 @@ tr {
     flex-direction: row;
     justify-content: space-between;
     position: relative;
+    margin-top: 50px;
 }
 
 .tool-tip .tool-tip-text {
@@ -460,4 +461,12 @@ tr {
 
 .status-3{
     width:100% !important;
+}
+
+.close-modal{
+    position: absolute;
+    right: 15px;
+    top: 15px;
+    cursor:pointer;
+    z-index: 3;
 }

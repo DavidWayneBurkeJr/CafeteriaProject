@@ -1,5 +1,5 @@
 ﻿@model IEnumerable<BatemanCafeteria.Models.Caf_MenuItemModel>
-@if (User.IsInRole("Caf_Admin") || User.IsInRole("Secretary"))
+@if (User.IsInRole("Caf_Secretary"))
 {
     <div class="btn btn-primary">
         <a href="@Url.Action("Create", "Menu")" class="modal-link">
@@ -50,7 +50,7 @@
                         </h5>
                     </div>
                 </div>
-                @if (User.IsInRole("Caf_Admin") || User.IsInRole("Secretary"))
+                @if (User.IsInRole("Caf_Secretary"))
                 {
                     <div class="col-md-12 menu-options">
                         <div class="col-md-6 align-right">

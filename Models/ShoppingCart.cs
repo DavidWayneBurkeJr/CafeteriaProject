@@ -19,7 +19,7 @@ namespace BatemanCafeteria.Models
             return cart;
         }
 
-        public static ShoppingCart GetCart (Controller controller)
+        public static ShoppingCart GetCart(Controller controller)
         {
             return GetCart(controller.HttpContext);
         }
@@ -29,7 +29,7 @@ namespace BatemanCafeteria.Models
                 c => c.CartID == ShoppingCartID
                 && c.MenuID == selectedItem.MenuItem.MenuID);
 
-            if(cartItem == null)
+            if (cartItem == null)
             {
                 cartItem = new Caf_CartModel
                 {
@@ -56,9 +56,9 @@ namespace BatemanCafeteria.Models
 
             int itemCount = 0;
 
-            if(cartItem != null)
+            if (cartItem != null)
             {
-                if(cartItem.Quantity > 1)
+                if (cartItem.Quantity > 1)
                 {
                     cartItem.Quantity--;
                     itemCount = cartItem.Quantity;
@@ -89,7 +89,7 @@ namespace BatemanCafeteria.Models
             return applicationDbContext.Caf_Carts.Where(
                 cart => cart.CartID == ShoppingCartID).ToList();
         }
-        
+
         public int GetCount()
         {
             int? count = (from cartItems in applicationDbContext.Caf_Carts
@@ -112,7 +112,7 @@ namespace BatemanCafeteria.Models
             decimal orderTotal = 0;
 
             var cartItems = GetCartItems();
-            
+
             foreach (var item in cartItems)
             {
                 var orderDetail = new Caf_OrderItemModel
@@ -130,14 +130,19 @@ namespace BatemanCafeteria.Models
             invoice.Order_total = orderTotal;
 
             applicationDbContext.SaveChanges();
+            EmailHelper email = new EmailHelper();
+            email.sendEmail(invoice.Customer_email,
+                "Thank you for your order! Your food will start cooking shortly. Your order number is " + invoice.InvoiceID,
+                "Cafeteria Order Confirmation",
+                invoice.Customer_name);
             EmptyCart();
             return invoice.InvoiceID;
         }
 
 
-        public string GetCartID (HttpContextBase context)
+        public string GetCartID(HttpContextBase context)
         {
-            if(context.Session[CartSessionKey] == null)
+            if (context.Session[CartSessionKey] == null)
             {
                 if (!string.IsNullOrWhiteSpace(context.User.Identity.Name))
                 {

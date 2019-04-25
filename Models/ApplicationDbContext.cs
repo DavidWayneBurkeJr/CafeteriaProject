@@ -25,6 +25,7 @@ namespace BatemanCafeteria.Models
         public virtual DbSet<Caf_MenuItemModel> Caf_MenuItems { get; set; }
         public virtual DbSet<Caf_FoodStatusModel> Caf_FoodStatuses { get; set; }
         public virtual DbSet<Caf_FoodCategories> Caf_FoodCategories { get; set; }
+        public virtual DbSet<error_log> Error_Logs { get; set; }
         #endregion tables
 
         public static ApplicationDbContext Create()

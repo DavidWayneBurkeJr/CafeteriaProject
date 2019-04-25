@@ -244,12 +244,19 @@
     <Compile Include="Migrations\201904110539425_updateModels2.Designer.cs">
       <DependentUpon>201904110539425_updateModels2.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201904241850591_errorlogging.cs" />
+    <Compile Include="Migrations\201904241850591_errorlogging.Designer.cs">
+      <DependentUpon>201904241850591_errorlogging.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\ApplicationDbContext.cs" />
     <Compile Include="Models\Caf_CartModel.cs" />
     <Compile Include="Models\Caf_FoodCategories.cs" />
     <Compile Include="Models\Caf_FoodStatusModel.cs" />
+    <Compile Include="Models\EmailHelper.cs" />
+    <Compile Include="Models\ErrorLogging.cs" />
+    <Compile Include="Models\error_log.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\Caf_InvoiceModel.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
@@ -352,6 +359,8 @@
     <Content Include="Views\Admin\ManageUsers.cshtml" />
     <Content Include="Views\Admin\Index.cshtml" />
     <Content Include="Views\Home\_OrderStatus.cshtml" />
+    <Content Include="Views\Shared\_ModalExit.cshtml" />
+    <Content Include="Views\Shared\EmailTemplate.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -399,6 +408,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201904110539425_updateModels2.resx">
       <DependentUpon>201904110539425_updateModels2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201904241850591_errorlogging.resx">
+      <DependentUpon>201904241850591_errorlogging.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

@@ -1,12 +1,12 @@
 ﻿@model BatemanCafeteria.Models.Caf_MenuItemModel
-
+@Html.Partial("_ModalExit")
 <div class="modal-body">
     @using (Html.BeginForm())
     {
         @Html.AntiForgeryToken()
 
         <div class="form-horizontal">
-            <h4>Caf_MenuItemModel</h4>
+            <h4>Edit Item</h4>
             <hr />
             @Html.ValidationSummary(true, "", new { @class = "text-danger" })
             @Html.HiddenFor(model => model.MenuID)
