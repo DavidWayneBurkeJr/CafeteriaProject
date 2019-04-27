@@ -78,6 +78,23 @@
         <a href="@Url.Action("Edit", "Secretary", new { id = Model.OrderId })" class="btn btn-primary">Edit <i class="glyphicon glyphicon-edit"></i></a>
     </div>
     <div class="col-md-6">
-        <a href="@Url.Action("DeleteOrder", "Secretary", new { id = Model.OrderId })" class="btn btn-danger modal-link">Delete <i class="glyphicon glyphicon-trash"></i></a>
+        <a data-id="@Model.OrderId" class="btn btn-danger inner-modal-link">Delete <i class="glyphicon glyphicon-trash"></i></a>
     </div>
 </div>
+
+<script type="text/javascript">
+    $(function () {
+        $(".inner-modal-link").click(function () {
+            var orderDelete = $(this).attr("data-id");
+            console.log(orderDelete);
+            if (orderDelete != null) {
+                console.log("Bruh");
+                $.get("/Secretary/DeleteOrder", { "id": orderDelete }, function (data) {
+                    $(".modal-content").html(data);
+                    console.log(data);
+                });
+            }
+
+        });
+    });
+</script>
