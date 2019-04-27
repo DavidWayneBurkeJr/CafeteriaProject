@@ -11,10 +11,10 @@ namespace BatemanCafeteria.Models
         [Key]
         public int OrderItemID { get; set; }
         public int InvoiceID { get; set; }
-        public int ItemID { get; set; }
         public int Quantity { get; set; }
         public decimal UnitPrice { get; set; }
         public string Special_instructions { get; set; }
+        public int MenuID { get; set; }
         public virtual Caf_MenuItemModel MenuItem { get; set; }
         public virtual Caf_InvoiceModel Invoice { get; set; }
     }

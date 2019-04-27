@@ -28,6 +28,7 @@ namespace BatemanCafeteria.Models
         public string Order_date { get; set; }
         [ScaffoldColumn(false)]
         public string Order_time { get; set; }
+        [DisplayName("Total")]
         public decimal Order_total { get; set; }
         [ScaffoldColumn(false)]
         public bool Payment_status { get; set; } = false;

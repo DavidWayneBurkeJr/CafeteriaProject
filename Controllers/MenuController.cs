@@ -133,7 +133,6 @@ namespace BatemanCafeteria.Controllers
             {
                 return View();
             }
-            Debug.Write(category);
             return RedirectToAction("Menu", "Home", new { category = category });
         }
 

@@ -3,8 +3,11 @@ using BatemanCafeteria.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Data.Entity;
 using System.Web;
 using System.Web.Mvc;
+using System.Net;
+using System.Data;
 
 namespace BatemanCafeteria.Controllers
 {
@@ -56,6 +59,60 @@ namespace BatemanCafeteria.Controllers
             applicationDbContext.SaveChanges();
             return RedirectToAction("ManageOrders");
             
+        }
+
+        public ActionResult ViewOrder(int id)
+        {
+            var invoice = applicationDbContext.Caf_Invoices.Find(id);
+            var items = applicationDbContext.Caf_OrderItems.Where(x => x.InvoiceID == id).ToList();
+            ViewOrderViewModel viewOrder = new ViewOrderViewModel
+            {
+                OrderId = invoice.InvoiceID,
+                Email = invoice.Customer_email,
+                Name = invoice.Customer_name,
+                Phone = invoice.Customer_phone,
+                Date = invoice.Order_date,
+                Time = invoice.Order_time,
+                Items = items,
+                Total = invoice.Order_total
+            };
+
+            return PartialView("_ViewOrder", viewOrder);
+        }
+
+        [HttpGet]
+        public ActionResult DeleteOrder(int ? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            else
+            {
+                var invoice = applicationDbContext.Caf_Invoices.Find(id);
+                if(invoice == null)
+                {
+                    return HttpNotFound();
+                }
+                return PartialView("_Delete", invoice);
+            }
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult DeleteOrder(int id)
+        {
+            var invoice = applicationDbContext.Caf_Invoices.Find(id);
+            try
+            {
+                applicationDbContext.Caf_Invoices.Remove(invoice);
+                applicationDbContext.SaveChanges();
+            }
+            catch(DataException)
+            {
+                return RedirectToAction("ManageOrders");
+            }
+            return RedirectToAction("ManageOrders");
         }
     }
 }

@@ -140,6 +140,12 @@ textarea {
 
 a:hover {
     text-decoration: none;
+    color: inherit;
+}
+
+a{
+    outline: none;
+    color: inherit;
 }
 
 .menuitem {
@@ -271,6 +277,7 @@ tr {
 .phone {
     font-size: 9px;
     color: #04954A;
+    white-space: nowrap;
 }
 
 .has-paid:hover {
@@ -469,4 +476,23 @@ tr {
     top: 15px;
     cursor:pointer;
     z-index: 3;
+}
+
+.items{
+    width: 100%;
+    max-height: 200px;
+    overflow-y: auto;
+}
+
+.special-inst{
+    text-overflow: ellipsis;
+    overflow: hidden;
+    font-style: italic;
+    color: black;
+    background-color: #ffff00;
+    font-size: small;
+}
+
+.special-inst:hover{
+    overflow: visible;
 }

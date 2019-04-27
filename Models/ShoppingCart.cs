@@ -117,7 +117,7 @@ namespace BatemanCafeteria.Models
             {
                 var orderDetail = new Caf_OrderItemModel
                 {
-                    ItemID = item.MenuID,
+                    MenuID = item.MenuID,
                     InvoiceID = invoice.InvoiceID,
                     UnitPrice = item.MenuItem.Price,
                     Quantity = item.Quantity,

@@ -248,10 +248,15 @@
     <Compile Include="Migrations\201904241850591_errorlogging.Designer.cs">
       <DependentUpon>201904241850591_errorlogging.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201904270341507_fkFix.cs" />
+    <Compile Include="Migrations\201904270341507_fkFix.Designer.cs">
+      <DependentUpon>201904270341507_fkFix.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\ApplicationDbContext.cs" />
     <Compile Include="Models\Caf_CartModel.cs" />
+    <Compile Include="Models\Caf_Caterings.cs" />
     <Compile Include="Models\Caf_FoodCategories.cs" />
     <Compile Include="Models\Caf_FoodStatusModel.cs" />
     <Compile Include="Models\EmailHelper.cs" />
@@ -271,6 +276,7 @@
     <Compile Include="ViewModels\OrderStatusViewModel.cs" />
     <Compile Include="ViewModels\ShoppingCartRemoveViewModel.cs" />
     <Compile Include="ViewModels\ShoppingCartViewModel.cs" />
+    <Compile Include="ViewModels\ViewOrderViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="favicon.ico" />
@@ -361,6 +367,8 @@
     <Content Include="Views\Home\_OrderStatus.cshtml" />
     <Content Include="Views\Shared\_ModalExit.cshtml" />
     <Content Include="Views\Shared\EmailTemplate.cshtml" />
+    <Content Include="Views\Secretary\_ViewOrder.cshtml" />
+    <Content Include="Views\Secretary\_Delete.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -411,6 +419,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201904241850591_errorlogging.resx">
       <DependentUpon>201904241850591_errorlogging.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201904270341507_fkFix.resx">
+      <DependentUpon>201904270341507_fkFix.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
