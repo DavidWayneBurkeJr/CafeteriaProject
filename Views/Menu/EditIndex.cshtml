@@ -1,0 +1,43 @@
+﻿@{
+    ViewBag.Title = "Home Page";
+}
+
+<div class="row flex">
+    <div class="col-md-3 clickable">
+        <a href="@Url.Action("EditMenu", "Menu", new { category = "Entrees" })">
+            <div class="box">
+                <img src="~/Images/Burger.png" alt="Entrees" />
+                <h3>Entrees</h3>
+            </div>
+        </a>
+    </div>
+
+    <div class="col-md-3 clickable">
+        <a href="@Url.Action("EditMenu", "Menu", new { category = "Drinks" })">
+            <div class="box">
+                <img src="~/Images/Hot drinks.png" alt="Drinks" />
+                <h3>Drinks</h3>
+            </div>
+        </a>
+    </div>
+
+
+    <div class="col-md-3 clickable">
+        <a href="@Url.Action("EditMenu", "Menu", new { category = "Snacks" })">
+            <div class="box">
+                <img src="~/Images/Symbol 11 – 1.png" alt="Snacks" />
+                <h3>Snacks</h3>
+            </div>
+        </a>
+    </div>
+
+    <div class="col-md-3 clickable">
+        <a href="@Url.Action("EditMenu", "Menu", new { category = "DailySpecial" })">
+            <div class="box">
+                <img src="~/Images/Symbol 13 – 1.png" alt="Daily Special" />
+                <h3>Daily Special</h3>
+            </div>
+        </a>
+    </div>
+
+</div>

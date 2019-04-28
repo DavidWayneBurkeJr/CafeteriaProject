@@ -1,13 +1,12 @@
 ﻿@model IEnumerable<BatemanCafeteria.Models.Caf_MenuItemModel>
-@if (User.IsInRole("Caf_Secretary"))
-{
-    <div class="row flex center-items padding-top-medium">
-        <div id="#cart">
-            @{Html.RenderAction("CartSummary", "ShoppingCart");}
-        </div>
+    <div class="btn btn-primary">
+        <a href="@Url.Action("Create", "Menu")" class="modal-link">
+            <i class="glyphicon glyphicon-plus"></i>
+            <span>
+                <strong>Create</strong>
+            </span>
+        </a>
     </div>
-    <hr />
-}
 <div class="row flex">
 
     @foreach (var item in Model)
@@ -48,8 +47,18 @@
                         </h5>
                     </div>
                 </div>
-                <div class="btn btn-primary">
-                    @Html.ActionLink("Add To Cart", "AddToCart", "ShoppingCart", new { id = item.MenuID }, new { @class = "modal-link" })
+
+                <div class="col-md-12 menu-options">
+                    <div class="col-md-6 align-right">
+                        <a href="@Url.Action("Edit", "Menu", new { id = item.MenuID })" class="modal-link">
+                            <i class="glyphicon glyphicon-edit" style="color: rgba(0, 0, 0, 0.5)"></i>
+                        </a>
+                    </div>
+                    <div class="col-md-6">
+                        <a href="@Url.Action("Delete", "Menu", new { id = item.MenuID })" class="modal-link">
+                            <i class="glyphicon glyphicon-trash" style="color: rgba(0, 0, 0, 0.5)"></i>
+                        </a>
+                    </div>
                 </div>
             </div>
         </div>

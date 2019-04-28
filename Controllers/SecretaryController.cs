@@ -55,6 +55,11 @@ namespace BatemanCafeteria.Controllers
             else if (invoice.Payment_status == true)
             {
                 applicationDbContext.Caf_Invoices.Remove(invoice);
+                EmailHelper email = new EmailHelper();
+                email.sendEmail(invoice.Customer_email,
+                    "Your order is ready for pickup! Be sure to bring $" + invoice.Order_total.ToString() + " with you.",
+                    "Your order is ready for pickup!",
+                    invoice.Customer_name);
             }
             applicationDbContext.SaveChanges();
             return RedirectToAction("ManageOrders");
@@ -114,5 +119,13 @@ namespace BatemanCafeteria.Controllers
             }
             return RedirectToAction("ManageOrders");
         }
+
+
+        [HttpGet]
+        public ActionResult CateringOrder()
+        {
+            return RedirectToAction("Index", "Home");
+        }
+
     }
 }

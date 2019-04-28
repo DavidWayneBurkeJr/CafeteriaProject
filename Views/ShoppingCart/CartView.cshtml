@@ -20,7 +20,11 @@
                     } else {
                         $('#item-count-' + data.DeleteID).text(data.ItemCount);
                     }
+                    if ($('.RemoveLink').length == 1 && $('.RemoveLink').is(':visible')) {
+                        $('#checkout').hide();
+                    }
                     $('#cart-total').text('$' + data.CartTotal);
+                    $('#catering-total').text('-$' + data.CartTotal)
                     $('#update-message').text(data.Message);
                     $('#cart-status').text('Cart (' + data.CartCount + ')');
                 });
@@ -68,16 +72,51 @@
             </td>
         </tr>
     }
-    <tr>
-        <td>
-            Total
-        </td>
-        <td></td>
-        <td></td>
-        <td id="cart-total">
-            $@Model.CartTotal
-        </td>
-    </tr>
-    
+    @if (User.IsInRole("Caf_Secretary"))
+    {
+        <tr>
+            <td style="color: red; font-style: italic">Catering</td>
+            <td></td>
+            <td></td>
+            <td id="catering-total" style="color: red; font-style: italic">
+                -$@Model.CartTotal
+            </td>
+        </tr>
+        <tr>
+            <td>
+                Total
+            </td>
+            <td></td>
+            <td></td>
+            <td id="cart-total">
+                $0.00
+            </td>
+        </tr>
+    }
+    else
+    {
+        <tr>
+            <td>
+                Total
+            </td>
+            <td></td>
+            <td></td>
+            <td id="cart-total">
+                $@Model.CartTotal
+            </td>
+        </tr>
+    }
 </table>
-<div class="btn btn-primary">@Html.ActionLink("Proceed to Checkout", "Checkout", "Checkout") </div>
+@if (Model.CartItems.Count != 0)
+{
+<div class="btn btn-primary" id="checkout">
+    @if (User.IsInRole("Caf_Secretary"))
+    {
+        @Html.ActionLink("Proceed to Checkout", "CateringVerification", "Checkout", "", new { @class = "modal-link" })
+    }
+    else
+    {
+    @Html.ActionLink("Proceed to Checkout", "Checkout", "Checkout")
+    }
+</div>
+}
