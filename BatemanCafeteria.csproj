@@ -264,11 +264,16 @@
     <Compile Include="Migrations\201904280518027_cateringstable.Designer.cs">
       <DependentUpon>201904280518027_cateringstable.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201904280640465_dailyspecials.cs" />
+    <Compile Include="Migrations\201904280640465_dailyspecials.Designer.cs">
+      <DependentUpon>201904280640465_dailyspecials.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\ApplicationDbContext.cs" />
     <Compile Include="Models\Caf_CartModel.cs" />
     <Compile Include="Models\Caf_Caterings.cs" />
+    <Compile Include="Models\Caf_DailySpecials.cs" />
     <Compile Include="Models\Caf_FoodCategories.cs" />
     <Compile Include="Models\Caf_FoodStatusModel.cs" />
     <Compile Include="Models\EmailHelper.cs" />
@@ -288,6 +293,7 @@
     <Compile Include="ViewModels\AddToCartViewModel.cs" />
     <Compile Include="ViewModels\CateringCheckoutViewModel.cs" />
     <Compile Include="ViewModels\CateringVerficationViewModel.cs" />
+    <Compile Include="ViewModels\EditMenuViewModel.cs" />
     <Compile Include="ViewModels\ManageOrdersViewModel.cs" />
     <Compile Include="ViewModels\OrderStatusViewModel.cs" />
     <Compile Include="ViewModels\ShoppingCartRemoveViewModel.cs" />
@@ -451,6 +457,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201904280518027_cateringstable.resx">
       <DependentUpon>201904280518027_cateringstable.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201904280640465_dailyspecials.resx">
+      <DependentUpon>201904280640465_dailyspecials.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

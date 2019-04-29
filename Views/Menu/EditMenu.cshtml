@@ -1,4 +1,4 @@
-﻿@model IEnumerable<BatemanCafeteria.Models.Caf_MenuItemModel>
+﻿@model BatemanCafeteria.ViewModels.EditMenuViewModel
     <div class="btn btn-primary">
         <a href="@Url.Action("Create", "Menu")" class="modal-link">
             <i class="glyphicon glyphicon-plus"></i>
@@ -9,7 +9,7 @@
     </div>
 <div class="row flex">
 
-    @foreach (var item in Model)
+    @foreach (var item in Model.Item)
     {
         <div class="col-md-4">
             <div class="menuitem">
@@ -47,7 +47,20 @@
                         </h5>
                     </div>
                 </div>
+                @if (item.FoodCategory.Category == "DailySpecial")
+                {
+                    if(Model.DailySpecial.Find(x => x.MenuID == item.MenuID).Active == true)
+                    {
+                        <h3>Active</h3>
+                    }
+                    else
+                    {
+                        <h3>Not Active</h3>
+                    }
+                    <script type="text/javascript">
 
+                    </script>
+                }
                 <div class="col-md-12 menu-options">
                     <div class="col-md-6 align-right">
                         <a href="@Url.Action("Edit", "Menu", new { id = item.MenuID })" class="modal-link">

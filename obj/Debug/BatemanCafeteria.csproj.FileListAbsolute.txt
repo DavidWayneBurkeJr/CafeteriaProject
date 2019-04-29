@@ -190,3 +190,4 @@ C:\Users\David\source\repos\BatemanCafeteria\obj\Debug\BatemanCafeteria.Migratio
 C:\Users\David\source\repos\BatemanCafeteria\obj\Debug\BatemanCafeteria.Migrations.dummymodel.resources
 C:\Users\David\source\repos\BatemanCafeteria\obj\Debug\BatemanCafeteria.csprojAssemblyReference.cache
 C:\Users\David\source\repos\BatemanCafeteria\obj\Debug\BatemanCafeteria.Migrations.cateringstable.resources
+C:\Users\David\source\repos\BatemanCafeteria\obj\Debug\BatemanCafeteria.Migrations.dailyspecials.resources

@@ -29,7 +29,7 @@ namespace BatemanCafeteria.Migrations
                 new Caf_FoodCategories() { CategoryId = 1, Category = "Entrees" },
                 new Caf_FoodCategories() { CategoryId = 2, Category = "Drinks" },
                 new Caf_FoodCategories() { CategoryId = 3, Category = "Snacks" },
-                new Caf_FoodCategories() { CategoryId = 4, Category = "Daily Special" });
+                new Caf_FoodCategories() { CategoryId = 4, Category = "DailySpecial" });
         }
     }
 }

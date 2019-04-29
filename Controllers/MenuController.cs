@@ -10,6 +10,7 @@ using System.Linq;
 using System.Net;
 using System.Text.RegularExpressions;
 using System.Web.Mvc;
+using BatemanCafeteria.ViewModels;
 
 namespace BatemanCafeteria.Controllers
 {
@@ -94,7 +95,11 @@ namespace BatemanCafeteria.Controllers
                     ModelState.AddModelError("", menuItem.Title + " already exists.");
                     return View(menuItem);
                 }
-                return RedirectToAction("Menu", "Home", new { category = category });
+                if (menuItem.FoodCategory.Category.Equals("DailySpecial"))
+                {
+                    ToggleDailySpecial(menuItem.MenuID);
+                }
+                return RedirectToAction("EditIndex", "Menu", new { category = category });
             }
             
             return View(menuItem);
@@ -185,13 +190,71 @@ namespace BatemanCafeteria.Controllers
         {
             if (category != null)
             {
-                int catId = applicationDbContext.Caf_FoodCategories.Where(x => x.Category == category.Trim()).First().CategoryId;
-                List<Caf_MenuItemModel> menuItems = applicationDbContext.Caf_MenuItems.Where(x => x.CategoryId == catId).ToList();
-                return View(menuItems);
+                try
+                {
+                    if (!category.Equals("DailySpecial"))
+                    {
+                        int catId = applicationDbContext.Caf_FoodCategories.Where(x => x.Category == category.Trim()).First().CategoryId;
+                        EditMenuViewModel editMenuView = new EditMenuViewModel
+                        {
+                            Item = applicationDbContext.Caf_MenuItems.Where(x => x.CategoryId == catId).ToList()
+                        };
+                        //List<Caf_MenuItemModel> menuItems = applicationDbContext.Caf_MenuItems.Where(x => x.CategoryId == catId).ToList();
+                        return View(editMenuView);
+                    }
+                    else
+                    {
+                        int catId = applicationDbContext.Caf_FoodCategories.Where(x => x.Category == category.Trim()).First().CategoryId;
+                        EditMenuViewModel editMenuView = new EditMenuViewModel
+                        {
+                            Item = applicationDbContext.Caf_MenuItems.Where(x => x.CategoryId == catId).ToList(),
+                            DailySpecial = applicationDbContext.Caf_DailySpecials.ToList()
+                        };
+
+                        return View(editMenuView);
+                    }
+                }
+                catch
+                {
+                    return RedirectToAction("EditIndex");
+                }
             }
             else
             {
                 return RedirectToAction("EditIndex");
+            }
+        }
+
+        public void ToggleDailySpecial(int id)
+        {
+            if(id != null)
+            {
+                try
+                {
+                    var selectedSpecial = applicationDbContext.Caf_DailySpecials.Find(id);
+                    if(selectedSpecial == null)
+                    {
+                        var newSpecial = new Caf_DailySpecials
+                        {
+                            MenuID = id,
+                            Active = true
+                        };
+                        selectedSpecial = newSpecial;
+                        applicationDbContext.Caf_DailySpecials.Add(newSpecial);
+                    }
+                    selectedSpecial.Active = true;
+                    var otherSpecials = applicationDbContext.Caf_DailySpecials.Where(x => x.SpecialId != id).ToList();
+                    foreach(var item in otherSpecials)
+                    {
+                        item.Active = false;
+                    }
+                    applicationDbContext.SaveChanges();
+                }
+                catch
+                {
+                    ViewBag.Error = "Something went wrong with your request. Please try again";
+                    RedirectToAction("EditIndex");
+                }
             }
         }
     }
