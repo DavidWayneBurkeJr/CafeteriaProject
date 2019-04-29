@@ -231,7 +231,7 @@ namespace BatemanCafeteria.Controllers
             {
                 try
                 {
-                    var selectedSpecial = applicationDbContext.Caf_DailySpecials.Find(id);
+                    var selectedSpecial = applicationDbContext.Caf_DailySpecials.Where(x => x.MenuID == id).First();
                     if(selectedSpecial == null)
                     {
                         var newSpecial = new Caf_DailySpecials
@@ -242,12 +242,13 @@ namespace BatemanCafeteria.Controllers
                         selectedSpecial = newSpecial;
                         applicationDbContext.Caf_DailySpecials.Add(newSpecial);
                     }
-                    selectedSpecial.Active = true;
-                    var otherSpecials = applicationDbContext.Caf_DailySpecials.Where(x => x.SpecialId != id).ToList();
-                    foreach(var item in otherSpecials)
+                    bool state = selectedSpecial.Active;
+                    if (state)
                     {
-                        item.Active = false;
+                        state = false;
                     }
+                    else { state = true; }
+                    selectedSpecial.Active = state;
                     applicationDbContext.SaveChanges();
                 }
                 catch

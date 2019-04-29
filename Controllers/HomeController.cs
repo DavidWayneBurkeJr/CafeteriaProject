@@ -57,9 +57,24 @@ namespace BatemanCafeteria.Controllers
         {
             if (category != null)
             {
-                int catId = applicationDbContext.Caf_FoodCategories.Where(x => x.Category == category.Trim()).First().CategoryId;
-                List<Caf_MenuItemModel> menuItems = applicationDbContext.Caf_MenuItems.Where(x => x.CategoryId == catId).ToList();
-                return View(menuItems);
+                if (category != "DailySpecial")
+                {
+                    int catId = applicationDbContext.Caf_FoodCategories.Where(x => x.Category == category.Trim()).First().CategoryId;
+                    List<Caf_MenuItemModel> menuItems = applicationDbContext.Caf_MenuItems.Where(x => x.CategoryId == catId).ToList();
+                    return View(menuItems);
+                }
+                else
+                {
+                    int catId = applicationDbContext.Caf_FoodCategories.Where(x => x.Category == category.Trim()).First().CategoryId;
+                    List<Caf_DailySpecials> activeItems = applicationDbContext.Caf_DailySpecials.Where(x => x.Active).ToList();
+                    List<Caf_MenuItemModel> menuItems = new List<Caf_MenuItemModel>();
+                    foreach(var item in activeItems)
+                    {
+                        menuItems.Add(applicationDbContext.Caf_MenuItems.Find(item.MenuID));
+                    }
+                    
+                    return View(menuItems);
+                }
             }
             else
             {

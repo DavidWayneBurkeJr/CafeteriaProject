@@ -1,12 +1,12 @@
 ﻿@model BatemanCafeteria.ViewModels.EditMenuViewModel
-    <div class="btn btn-primary">
-        <a href="@Url.Action("Create", "Menu")" class="modal-link">
-            <i class="glyphicon glyphicon-plus"></i>
-            <span>
-                <strong>Create</strong>
-            </span>
-        </a>
-    </div>
+<div class="btn btn-primary">
+    <a href="@Url.Action("Create", "Menu")" class="modal-link">
+        <i class="glyphicon glyphicon-plus"></i>
+        <span>
+            <strong>Create</strong>
+        </span>
+    </a>
+</div>
 <div class="row flex">
 
     @foreach (var item in Model.Item)
@@ -49,17 +49,24 @@
                 </div>
                 @if (item.FoodCategory.Category == "DailySpecial")
                 {
-                    if(Model.DailySpecial.Find(x => x.MenuID == item.MenuID).Active == true)
+                    if (Model.DailySpecial.Find(x => x.MenuID == item.MenuID).Active == true)
                     {
-                        <h3>Active</h3>
+                        <label class="switch">
+                            <i class="glyphicon glyphicon-eye-open"></i>
+                            <input type="checkbox" id="@item.MenuID" checked />
+                            <span class="slider round"></span>
+                        </label>
+
                     }
                     else
                     {
-                        <h3>Not Active</h3>
+                        <label class="switch">
+                            <i class="glyphicon glyphicon-eye-open"></i>
+                            <input type="checkbox" id="@item.MenuID" />
+                            <span class="slider round"></span>
+                        </label>
                     }
-                    <script type="text/javascript">
 
-                    </script>
                 }
                 <div class="col-md-12 menu-options">
                     <div class="col-md-6 align-right">
@@ -77,3 +84,9 @@
         </div>
     }
 </div>
+<script type="text/javascript">
+    $(':checkbox').click(function () {
+        var id = $(this).attr('id');
+        $.post('/Menu/ToggleDailySpecial', { 'id': id });
+    });
+</script>
