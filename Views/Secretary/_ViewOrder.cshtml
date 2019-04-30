@@ -88,10 +88,8 @@
             var orderDelete = $(this).attr("data-id");
             console.log(orderDelete);
             if (orderDelete != null) {
-                console.log("Bruh");
                 $.get("/Secretary/DeleteOrder", { "id": orderDelete }, function (data) {
                     $(".modal-content").html(data);
-                    console.log(data);
                 });
             }
 

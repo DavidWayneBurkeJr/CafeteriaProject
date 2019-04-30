@@ -309,6 +309,7 @@
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
+    <Content Include="Images\breakfast.png" />
     <Content Include="Images\Burger%402x.png" />
     <Content Include="Images\Burger.png" />
     <Content Include="Images\MenuItems\ChickenFingers.png" />
@@ -318,6 +319,7 @@
     <Content Include="Images\shoppingBasket.png" />
     <Content Include="Images\logo.png" />
     <Content Include="Images\shutdown.png" />
+    <Content Include="Images\snacks.png" />
     <Content Include="Images\Symbol 11 – 1%402x.png" />
     <Content Include="Images\Symbol 11 – 1.png" />
     <Content Include="Images\Symbol 13 – 1%402x.png" />
@@ -395,6 +397,7 @@
     <Content Include="Views\Menu\EditIndex.cshtml" />
     <Content Include="Views\Checkout\_CateringVerification.cshtml" />
     <Content Include="Views\Checkout\CateringCheckout.cshtml" />
+    <Content Include="Views\Secretary\_ManageOrdersRefresh.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

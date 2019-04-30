@@ -3,7 +3,8 @@
 @{
     ViewBag.Title = "Manage Orders";
 }
-    <div class="container-fluid">
+<div class="container-fluid">
+    <div id="orders">
         <div class="col-md-4">
             <div class="statusHeader">
                 <h3>Received</h3>
@@ -11,34 +12,34 @@
             </div>
             @foreach (var item in Model.Received)
             {
-        <div class="col-md-12 orderItem">
-            <div class="col-md-2 orderNum">
-                @Html.DisplayFor(model => item.InvoiceID)
-            </div>
-            <div class="vl"></div>
-            <a href="@Url.Action("ViewOrder", "Secretary", new { id = item.InvoiceID })" class="modal-link">
-                <div class="col-md-6">
-                    <div class="flex">
-                        @Html.DisplayFor(model => item.Customer_name)
+                <div class="col-md-12 orderItem">
+                    <div class="col-md-2 orderNum">
+                        @Html.DisplayFor(model => item.InvoiceID)
                     </div>
-                    <div class="flex phone">
-                        @Html.DisplayFor(model => item.Customer_phone)
-                    </div>
-                </div>
-                </a>
-                <div class="vl"></div>
-
-                <div class="col-md-3">
-                    $@Html.DisplayFor(model => item.Order_total)
-                </div>
-                <div class="vl"></div>
-
-                <div class="col-md-1">
-                    <a href="@Url.Action("ChangeStatus", new { id = item.InvoiceID.ToString() })">
-                        <span class="glyphicon glyphicon-triangle-right green" aria-hidden="true"></span>
+                    <div class="vl"></div>
+                    <a href="@Url.Action("ViewOrder", "Secretary", new { id = item.InvoiceID })" class="modal-link">
+                        <div class="col-md-6">
+                            <div class="flex">
+                                @Html.DisplayFor(model => item.Customer_name)
+                            </div>
+                            <div class="flex phone">
+                                @Html.DisplayFor(model => item.Customer_phone)
+                            </div>
+                        </div>
                     </a>
+                    <div class="vl"></div>
+
+                    <div class="col-md-3">
+                        $@Html.DisplayFor(model => item.Order_total)
+                    </div>
+                    <div class="vl"></div>
+
+                    <div class="col-md-1">
+                        <a href="@Url.Action("ChangeStatus", new { id = item.InvoiceID.ToString() })">
+                            <span class="glyphicon glyphicon-triangle-right green" aria-hidden="true"></span>
+                        </a>
+                    </div>
                 </div>
-        </div>
             }
         </div>
         <div class="col-md-4">
@@ -53,14 +54,16 @@
                         @Html.DisplayFor(model => item.InvoiceID)
                     </div>
                     <div class="vl"></div>
-                    <div class="col-md-6">
-                        <div class="flex">
-                            @Html.DisplayFor(model => item.Customer_name)
-                        </div>
-                        <div class="flex phone">
+                    <a href="@Url.Action("ViewOrder", "Secretary", new { id = item.InvoiceID })" class="modal-link">
+                        <div class="col-md-6">
+                            <div class="flex">
+                                @Html.DisplayFor(model => item.Customer_name)
+                            </div>
+                            <div class="flex phone">
                                 @Html.DisplayFor(model => item.Customer_phone)
+                            </div>
                         </div>
-                    </div>
+                    </a>
                     <div class="vl"></div>
 
                     <div class="col-md-3">
@@ -119,3 +122,18 @@
             }
         </div>
     </div>
+</div>
+
+<script type="text/javascript">
+    var interval;
+    $(function () {
+        function update() {
+            $.post("/Secretary/RefreshOrders", function (data) {
+                $('#orders').html(data);
+                console.log('here');
+            });
+        };
+        interval = setInterval(update, 30000);
+        update();
+    });
+</script>

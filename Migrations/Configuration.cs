@@ -27,8 +27,10 @@ namespace BatemanCafeteria.Migrations
 
             context.Caf_FoodCategories.AddOrUpdate(x => x.CategoryId,
                 new Caf_FoodCategories() { CategoryId = 1, Category = "Entrees" },
+                new Caf_FoodCategories() { CategoryId = 3, Category = "Breakfast" },
                 new Caf_FoodCategories() { CategoryId = 2, Category = "Drinks" },
                 new Caf_FoodCategories() { CategoryId = 3, Category = "Snacks" },
+                new Caf_FoodCategories() { CategoryId = 3, Category = "Sides" },
                 new Caf_FoodCategories() { CategoryId = 4, Category = "DailySpecial" });
         }
     }

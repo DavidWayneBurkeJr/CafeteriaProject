@@ -34,6 +34,18 @@ namespace BatemanCafeteria.Controllers
             return View(manageOrders);
         }
 
+        public ActionResult RefreshOrders()
+        {
+            ManageOrdersViewModel manageOrders = new ManageOrdersViewModel
+            {
+                Received = applicationDbContext.Caf_Invoices.Where(items => items.StatusId == 1).ToList(),
+                Cooking = applicationDbContext.Caf_Invoices.Where(items => items.StatusId == 2).ToList(),
+                ReadyForPickup = applicationDbContext.Caf_Invoices.Where(items => items.StatusId == 3).ToList()
+
+            };
+            return PartialView("_ManageOrdersRefresh", manageOrders);
+        }
+
         public ActionResult ChangeStatus(int id)
         {
             Caf_InvoiceModel invoice = applicationDbContext.Caf_Invoices.Where(item => item.InvoiceID == id).First();

@@ -37,6 +37,12 @@
 </h3>
 <div id="update-message">
 </div>
+@if (Model.CartItems.Count == 0)
+{
+    <h2>Your cart is empty!</h2>
+}
+else
+{
 <table>
     <tr>
         <th class="col-md-4">
@@ -107,6 +113,7 @@
         </tr>
     }
 </table>
+}
 @if (Model.CartItems.Count != 0)
 {
 <div class="btn btn-primary" id="checkout">

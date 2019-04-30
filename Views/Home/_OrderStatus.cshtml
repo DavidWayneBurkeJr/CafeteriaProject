@@ -36,7 +36,6 @@ else
     $(function () {
         function update() {
             $.post("/Home/GetStatus", { "id": @ViewBag.OrderNum }, function (data) {
-                console.log(data);
                 if (data == 1) {
                     $("#received").removeClass("completed");
                     $("#received").addClass("completed");

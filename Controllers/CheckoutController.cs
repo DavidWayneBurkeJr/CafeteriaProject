@@ -15,7 +15,15 @@ namespace BatemanCafeteria.Controllers
         // GET: Checkout
         public ActionResult Checkout()
         {
-            return View();
+            var cart = ShoppingCart.GetCart(this.HttpContext);
+            if (cart.GetCartItems().Count() == 0)
+            {
+                return RedirectToAction("CartView", "ShoppingCart");
+            }
+            else
+            {
+                return View();
+            }
         }
 
         [HttpGet]
