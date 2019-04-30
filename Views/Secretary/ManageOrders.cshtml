@@ -130,7 +130,6 @@
         function update() {
             $.post("/Secretary/RefreshOrders", function (data) {
                 $('#orders').html(data);
-                console.log('here');
             });
         };
         interval = setInterval(update, 30000);

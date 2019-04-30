@@ -28,8 +28,12 @@ namespace BatemanCafeteria.Controllers
 
         [HttpGet]
         [Authorize(Roles = "Caf_Secretary")]
-        public ActionResult CateringCheckout(int verification)
+        public ActionResult CateringCheckout(int ? verification)
         {
+            if(verification == null)
+            {
+                return RedirectToAction("CartView", "ShoppingCart");
+            }
             var resInfo = applicationDbContext.res_reservations.Where(x => x.ver_code == verification).First();
             Caf_InvoiceModel invoice = new Caf_InvoiceModel
             {
@@ -44,7 +48,8 @@ namespace BatemanCafeteria.Controllers
             {
                 Reservation = resInfo,
                 Room = applicationDbContext.res_rooms.Find(resInfo.room_id),
-                Invoice = invoice
+                Invoice = invoice,
+                SelectedTime = resInfo.res_start
             };
             return View(cateringModel);
         }

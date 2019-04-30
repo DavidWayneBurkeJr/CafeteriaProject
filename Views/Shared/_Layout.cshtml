@@ -42,7 +42,7 @@
                     <div class="black-line-underline-right">
                         <ul class="nav navbar-nav navbar-right">
                             <li>@Html.ActionLink("Manage Orders", "ManageOrders", "Secretary")</li>
-                            <li>
+                            <li style="min-width: 212.55px;">
                                 @using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { id = "logoutForm" }))
                                 {
                                     @Html.AntiForgeryToken()
