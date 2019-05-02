@@ -15,6 +15,7 @@ namespace BatemanCafeteria.Controllers
         // GET: ShoppingCart
         public ActionResult CartView()
         {
+            if(TempData["Errors"] != null) { ViewBag.Errors = TempData["Errors"].ToString(); }
             var cart = ShoppingCart.GetCart(this.HttpContext);
             var viewModel = new ShoppingCartViewModel
             {
@@ -74,6 +75,13 @@ namespace BatemanCafeteria.Controllers
                 DeleteID = id
             };
             return Json(results);
+        }
+
+        public ActionResult EmptyCart()
+        {
+            var cart = ShoppingCart.GetCart(this.HttpContext);
+            cart.EmptyCart();
+            return RedirectToAction("CartView");
         }
 
         [ChildActionOnly]

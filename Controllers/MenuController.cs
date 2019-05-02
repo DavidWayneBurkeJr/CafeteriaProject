@@ -32,7 +32,7 @@ namespace BatemanCafeteria.Controllers
         {
             var categories = applicationDbContext.Caf_FoodCategories.ToList();
             ViewBag.Categories = new SelectList(categories, "CategoryId", "Category");
-
+            if(TempData["Errors"] != null) { ViewBag.Errors = TempData["Errors"].ToString(); }
             if (ModelState.IsValid)
             {
 
@@ -101,7 +101,7 @@ namespace BatemanCafeteria.Controllers
                 }
                 return RedirectToAction("EditIndex", "Menu", new { category = category });
             }
-            
+            TempData["Errors"] = "Error in creating menu item. Please try again.";
             return View(menuItem);
         }
 
@@ -136,7 +136,8 @@ namespace BatemanCafeteria.Controllers
             }
             catch(DataException)
             {
-                return View();
+                TempData["Errors"] = "Could not delete item. Please try again.";
+                return RedirectToAction("EditIndex");
             }
             return RedirectToAction("Menu", "Home", new { category = category });
         }
@@ -173,15 +174,16 @@ namespace BatemanCafeteria.Controllers
 
                 return RedirectToAction("Menu", "Home", new { category});
             }
-            IEnumerable<ModelError> allErrors = ModelState.Values.SelectMany(v => v.Errors);
-            var jsonErrors = JsonConvert.SerializeObject(allErrors);
-            return Json(allErrors);
+            TempData["Errors"] = "Something went wrong. Please try again.";
+            return RedirectToAction("EditIndex");
         }
 
 
         [HttpGet]
         public ActionResult EditIndex()
         {
+            if (TempData["Errors"] != null) { ViewBag.Errors = TempData["Errors"].ToString(); }
+
             return View();
         }
 
@@ -216,11 +218,13 @@ namespace BatemanCafeteria.Controllers
                 }
                 catch
                 {
+                    TempData["Errors"] = "Something went wrong. Please try again.";
                     return RedirectToAction("EditIndex");
                 }
             }
             else
             {
+                TempData["Errors"] = "Something went wrong. Please try again.";
                 return RedirectToAction("EditIndex");
             }
         }
@@ -253,7 +257,7 @@ namespace BatemanCafeteria.Controllers
                 }
                 catch
                 {
-                    ViewBag.Error = "Something went wrong with your request. Please try again";
+                    TempData["Errors"] = "Something went wrong with your request. Please try again";
                     RedirectToAction("EditIndex");
                 }
             }

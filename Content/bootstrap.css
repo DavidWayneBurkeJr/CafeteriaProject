@@ -7230,7 +7230,7 @@ button.close {
     box-shadow: 0 3px 9px rgba(0, 0, 0, .5);
     width: 70%;
     max-width: 1000px;
-    max-height: 500px;
+    max-height: 600px;
     min-height: 100px;
     margin: 30px auto;
 }

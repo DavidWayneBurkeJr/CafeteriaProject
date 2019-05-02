@@ -32,26 +32,36 @@ namespace BatemanCafeteria.Controllers
         {
             if(verification == null)
             {
+                TempData["Errors"] = "Could not verify catering order. Please try again.";
                 return RedirectToAction("CartView", "ShoppingCart");
             }
-            var resInfo = applicationDbContext.res_reservations.Where(x => x.ver_code == verification).First();
-            Caf_InvoiceModel invoice = new Caf_InvoiceModel
+            try
             {
-                Customer_email = resInfo.email_addr,
-                Customer_name = resInfo.res_name,
-                Customer_phone = resInfo.phone_ext,
-                Order_total = 0.00M,
-                Payment_status = true
+                var resInfo = applicationDbContext.res_reservations.Where(x => x.ver_code == verification).First();
+                Caf_InvoiceModel invoice = new Caf_InvoiceModel
+                {
+                    Customer_email = resInfo.email_addr,
+                    Customer_name = resInfo.res_name,
+                    Customer_phone = resInfo.phone_ext,
+                    Order_total = 0.00M,
+                    Payment_status = true
 
-            };
-            CateringCheckoutViewModel cateringModel = new CateringCheckoutViewModel
+                };
+                CateringCheckoutViewModel cateringModel = new CateringCheckoutViewModel
+                {
+                    Reservation = resInfo,
+                    Room = applicationDbContext.res_rooms.Find(resInfo.room_id),
+                    Invoice = invoice,
+                    SelectedTime = resInfo.res_start
+                };
+                return View(cateringModel);
+            }
+            catch
             {
-                Reservation = resInfo,
-                Room = applicationDbContext.res_rooms.Find(resInfo.room_id),
-                Invoice = invoice,
-                SelectedTime = resInfo.res_start
-            };
-            return View(cateringModel);
+                TempData["Errors"] = "Could not create catering order. Please try again.";
+                return RedirectToAction("CartView", "ShoppingCart");
+
+            }
         }
 
         [HttpPost]
@@ -97,13 +107,15 @@ namespace BatemanCafeteria.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult CateringVerification(CateringVerficationViewModel verificationModel)
         {
+            //Check if this works
             int vCode = verificationModel.VerificationCode;
-            if(applicationDbContext.res_reservations.Where(x => x.ver_code == vCode).Any())
+            if(applicationDbContext.res_reservations.Where(x => x.ver_code == vCode && x.approved_ind == "y").Any() && vCode != 0)
             {
                 return RedirectToAction("CateringCheckout", new { verification = vCode });
             }
             else
             {
+                TempData["Errors"] = "Could not verify catering order. Please try again.";
                 return RedirectToAction("CartView", "ShoppingCart");
             }
         }
@@ -118,15 +130,19 @@ namespace BatemanCafeteria.Controllers
                 invoice.Order_date = DateTime.Now.ToShortDateString();
                 invoice.Order_time = DateTime.Now.ToShortTimeString();
                 string pattern = @"^(?:\(?)(?<AreaCode>\d{3})(?:[\).\s]?)(\s?)(?<Prefix>\d{3})(?:[-\.\s]?)(?<Suffix>\d{4})(?!\d)";
+                string extension = @"^\d{1,5}$";
                 Match match = Regex.Match(invoice.Customer_phone, pattern);
-                if (!match.Success)
+                Match matchEx = Regex.Match(invoice.Customer_phone, extension);
+                if (!match.Success && !matchEx.Success)
                 {
-                    ModelState.AddModelError("", "Incorrect phone number format");
+                    ModelState.AddModelError("", "Incorrect phone number or extension format");
                     return View(invoice);
+                }else if (match.Success)
+                {
+                    string phone = Regex.Replace(invoice.Customer_phone, "[^0-9]", "");
+                    phone = String.Format("{0:(###) ###-####}", Convert.ToInt64(phone));
+                    invoice.Customer_phone = phone;
                 }
-                string phone = Regex.Replace(invoice.Customer_phone, "[^0-9]", "");
-                phone = String.Format("{0:(###) ###-####}", Convert.ToInt64(phone));
-                invoice.Customer_phone = phone;
                 invoice.Payment_status = false;
                 var cart = ShoppingCart.GetCart(this.HttpContext);
                 invoice.Order_total = cart.GetTotal();
@@ -137,6 +153,7 @@ namespace BatemanCafeteria.Controllers
             }
             else
             {
+                ViewBag.Errors("Sorry, something went wrong. Please fill out all fields.");
                 return View(invoice);
             }
         }
@@ -152,7 +169,8 @@ namespace BatemanCafeteria.Controllers
             }
             else
             {
-                return View("Error");
+                ViewBag.Errors = "Oops, something went wrong in your request. Please try again.";
+                return View();
             }
         }
 

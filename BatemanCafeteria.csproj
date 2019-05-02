@@ -268,6 +268,10 @@
     <Compile Include="Migrations\201904280640465_dailyspecials.Designer.cs">
       <DependentUpon>201904280640465_dailyspecials.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201905020327511_modelfix.cs" />
+    <Compile Include="Migrations\201905020327511_modelfix.Designer.cs">
+      <DependentUpon>201905020327511_modelfix.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\ApplicationDbContext.cs" />
@@ -463,6 +467,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201904280640465_dailyspecials.resx">
       <DependentUpon>201904280640465_dailyspecials.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201905020327511_modelfix.resx">
+      <DependentUpon>201905020327511_modelfix.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

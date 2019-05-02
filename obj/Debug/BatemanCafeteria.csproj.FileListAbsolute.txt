@@ -191,3 +191,4 @@ C:\Users\David\source\repos\BatemanCafeteria\obj\Debug\BatemanCafeteria.csproj.C
 C:\Users\David\source\repos\BatemanCafeteria\obj\Debug\BatemanCafeteria.dll
 C:\Users\David\source\repos\BatemanCafeteria\obj\Debug\BatemanCafeteria.pdb
 C:\Users\David\source\repos\BatemanCafeteria\obj\Debug\BatemanCafeteria.csprojAssemblyReference.cache
+C:\Users\David\source\repos\BatemanCafeteria\obj\Debug\BatemanCafeteria.Migrations.modelfix.resources
