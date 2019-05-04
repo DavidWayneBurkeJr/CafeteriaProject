@@ -24,6 +24,10 @@ namespace BatemanCafeteria.Controllers
         [HttpGet]
         public ActionResult ManageOrders()
         {
+            if(TempData["Errors"] != null)
+            {
+                ViewBag.Errors = TempData["Errors"].ToString();
+            }
             ManageOrdersViewModel manageOrders = new ManageOrdersViewModel
             {
                 Received = applicationDbContext.Caf_Invoices.Where(items => items.StatusId == 1).ToList(),
@@ -130,6 +134,38 @@ namespace BatemanCafeteria.Controllers
                 return RedirectToAction("ManageOrders");
             }
             return RedirectToAction("ManageOrders");
+        }
+
+        [HttpGet]
+        public ActionResult Edit (int id)
+        {
+            var invoice = applicationDbContext.Caf_Invoices.Find(id);
+            if(invoice != null)
+            {
+                return View("_Edit", invoice);
+            }
+            else
+            {
+                TempData["Errors"] = "Could not find order. Please try again.";
+                return RedirectToAction("ManageOrders");
+            }
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Edit(Caf_InvoiceModel invoice)
+        {
+            try
+            {
+                applicationDbContext.Entry(invoice).State = EntityState.Modified;
+                applicationDbContext.SaveChanges();
+                return RedirectToAction("ManageOrders");
+            }
+            catch
+            {
+                TempData["Errors"] = "Something went wrong. Please try again.";
+                return RedirectToAction("ManageOrders");
+            }
         }
 
 

@@ -402,6 +402,7 @@
     <Content Include="Views\Checkout\_CateringVerification.cshtml" />
     <Content Include="Views\Checkout\CateringCheckout.cshtml" />
     <Content Include="Views\Secretary\_ManageOrdersRefresh.cshtml" />
+    <Content Include="Views\Secretary\_Edit.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

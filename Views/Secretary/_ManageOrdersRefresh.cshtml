@@ -12,9 +12,9 @@
                 @Html.DisplayFor(model => item.InvoiceID)
             </div>
             <div class="vl"></div>
-            <a href="@Url.Action("ViewOrder", "Secretary", new { id = item.InvoiceID })" class="modal-link">
-                <div class="col-md-6">
-                    <div class="flex">
+            <a href="@Url.Action("ViewOrder", "Secretary", new { id = item.InvoiceID })" class="modal-link col-md-6">
+                <div class="col-md-12 customer-info">
+                    <div class="flex name">
                         @Html.DisplayFor(model => item.Customer_name)
                     </div>
                     <div class="flex phone">
@@ -49,9 +49,9 @@
                 @Html.DisplayFor(model => item.InvoiceID)
             </div>
             <div class="vl"></div>
-            <a href="@Url.Action("ViewOrder", "Secretary", new { id = item.InvoiceID })" class="modal-link">
-                <div class="col-md-6">
-                    <div class="flex">
+            <a href="@Url.Action("ViewOrder", "Secretary", new { id = item.InvoiceID })" class="modal-link col-md-6">
+                <div class="col-md-12 customer-info">
+                    <div class="flex name">
                         @Html.DisplayFor(model => item.Customer_name)
                     </div>
                     <div class="flex phone">
@@ -86,8 +86,8 @@
                 @Html.DisplayFor(model => item.InvoiceID)
             </div>
             <div class="vl"></div>
-            <div class="col-md-6">
-                <div class="flex">
+            <div class="col-md-6 customer-info">
+                <div class="flex name">
                     @Html.DisplayFor(model => item.Customer_name)
                 </div>
                 <div class="flex phone">
