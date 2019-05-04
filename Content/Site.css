@@ -288,6 +288,7 @@ tr {
     text-align: center;
     color: #04954A;
     font-size: large;
+    padding-left: 0px;
 }
 
 .flex-row {
@@ -298,6 +299,10 @@ tr {
 .flex-column {
     display: flex;
     flex-direction: column;
+}
+
+.flex-vertical-align {
+    align-items: center;
 }
 
 .img-area {

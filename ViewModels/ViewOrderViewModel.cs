@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Web;
 using BatemanCafeteria.Models;
@@ -12,10 +13,14 @@ namespace BatemanCafeteria.ViewModels
         [DisplayName("Order number")]
         public int OrderId { get; set; }
         [DisplayName("Name")]
+        [Required]
         public string Name { get; set; }
         [DisplayName("Email")]
+        [EmailAddress]
+        [Required]
         public string Email { get; set; }
         [DisplayName("Phone number")]
+        [Required]
         public string Phone { get; set; }
         [DisplayName("Date placed")]
         public string Date { get; set; }

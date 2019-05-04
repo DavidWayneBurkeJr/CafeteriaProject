@@ -28,6 +28,7 @@ namespace BatemanCafeteria.Controllers
             {
                 ViewBag.Errors = TempData["Errors"].ToString();
             }
+            applicationDbContext = new ApplicationDbContext();
             ManageOrdersViewModel manageOrders = new ManageOrdersViewModel
             {
                 Received = applicationDbContext.Caf_Invoices.Where(items => items.StatusId == 1).ToList(),
@@ -81,7 +82,8 @@ namespace BatemanCafeteria.Controllers
             return RedirectToAction("ManageOrders");
             
         }
-
+        
+        [HttpGet]
         public ActionResult ViewOrder(int id)
         {
             var invoice = applicationDbContext.Caf_Invoices.Find(id);
@@ -94,8 +96,8 @@ namespace BatemanCafeteria.Controllers
                 Phone = invoice.Customer_phone,
                 Date = invoice.Order_date,
                 Time = invoice.Order_time,
-                Items = items,
-                Total = invoice.Order_total
+                Total = invoice.Order_total,
+                Items = items
             };
 
             return PartialView("_ViewOrder", viewOrder);
@@ -140,9 +142,21 @@ namespace BatemanCafeteria.Controllers
         public ActionResult Edit (int id)
         {
             var invoice = applicationDbContext.Caf_Invoices.Find(id);
-            if(invoice != null)
+            var items = applicationDbContext.Caf_OrderItems.Where(x => x.InvoiceID == id).ToList();
+            if (invoice != null)
             {
-                return View("_Edit", invoice);
+                var viewModel = new ViewOrderViewModel
+                {
+                    OrderId = invoice.InvoiceID,
+                    Phone = invoice.Customer_phone,
+                    Name = invoice.Customer_name,
+                    Email = invoice.Customer_email,
+                    Date = invoice.Order_date,
+                    Time = invoice.Order_time,
+                    Total = invoice.Order_total,
+                    Items = items
+                };
+                return View("_Edit", viewModel);
             }
             else
             {
@@ -153,19 +167,41 @@ namespace BatemanCafeteria.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit(Caf_InvoiceModel invoice)
+        public ActionResult Edit(ViewOrderViewModel editedOrder)
         {
             try
             {
+                Caf_InvoiceModel invoice = applicationDbContext.Caf_Invoices.Find(editedOrder.OrderId);
+                invoice.Customer_email = editedOrder.Email;
+                invoice.Customer_name = editedOrder.Name;
+                invoice.Customer_phone = editedOrder.Phone;
+                invoice.Order_total = editedOrder.Total;
                 applicationDbContext.Entry(invoice).State = EntityState.Modified;
                 applicationDbContext.SaveChanges();
+                UpdateItems(editedOrder);
                 return RedirectToAction("ManageOrders");
             }
-            catch
+            catch(Exception e)
             {
+                e.ToString();
                 TempData["Errors"] = "Something went wrong. Please try again.";
                 return RedirectToAction("ManageOrders");
             }
+        }
+
+        [HttpPost]
+        public void UpdateItems (ViewOrderViewModel editedOrder)
+        {
+            List<Caf_OrderItemModel> orders = applicationDbContext.Caf_OrderItems.Where(x => x.InvoiceID == editedOrder.OrderId).ToList();
+            int index = 0;
+            foreach (var item in orders)
+            {
+                item.Quantity = editedOrder.Items[index].Quantity;
+                item.Special_instructions = editedOrder.Items[index].Special_instructions;
+                index++;
+                applicationDbContext.Entry(item).State = EntityState.Modified;
+            }
+            applicationDbContext.SaveChanges();
         }
 
 
