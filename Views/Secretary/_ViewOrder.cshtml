@@ -4,40 +4,77 @@
 <div class="modal-body">
     <h4>Ticket #@Model.OrderId</h4>
     <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.Name)
-        </dt>
+    <div class="col-md-12">
+        <dl class="dl-horizontal col-md-6">
+            <dt>
+                @Html.DisplayNameFor(model => model.Name)
+            </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.Name)
-        </dd>
+            <dd>
+                @Html.DisplayFor(model => model.Name)
+            </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Email)
-        </dt>
+            <dt>
+                @Html.DisplayNameFor(model => model.Email)
+            </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.Email)
-        </dd>
+            <dd>
+                @Html.DisplayFor(model => model.Email)
+            </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Phone)
-        </dt>
+            <dt>
+                @Html.DisplayNameFor(model => model.Phone)
+            </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.Phone)
-        </dd>
+            <dd>
+                @Html.DisplayFor(model => model.Phone)
+            </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Total)
-        </dt>
+            <dt>
+                @Html.DisplayNameFor(model => model.Total)
+            </dt>
 
-        <dd>
-            $@Html.DisplayFor(model => model.Total)
-        </dd>
+            <dd>
+                $@Html.DisplayFor(model => model.Total)
+            </dd>
 
-    </dl>
+        </dl>
+        @if (Model.CateringInfo != null)
+        {
+            <dl class="dl-horizontal col-md-6">
+                <dt>
+                    @Html.DisplayNameFor(model => model.Room.room_name)
+                </dt>
+                <dd>
+                    @Html.DisplayFor(model => model.Room.room_name)
+                </dd>
+                <dt>
+                    @Html.DisplayNameFor(model => model.Room.location)
+                </dt>
+                <dd>
+                    @Html.DisplayFor(model => model.Room.location)
+                </dd>
+                <dt>
+                    @Html.DisplayNameFor(model => model.CateringInfo.Time)
+                </dt>
+                <dd>
+                    @Model.CateringInfo.Time.ToString("h:mm tt")
+                </dd>
+                <dt>
+                    <label>Date</label>
+                </dt>
+                <dd>
+                    @Model.CateringInfo.Time.ToString("M/dd/yyyy")
+                </dd>
+                <dt>
+                    @Html.DisplayNameFor(model => model.CateringInfo.Instructions)
+                </dt>
+                <dd>
+                    @Html.DisplayFor(model => model.CateringInfo.Instructions)
+                </dd>
+            </dl>
+        }
+    </div>
     <div class="items">
         <table style="width: 100%">
             <tr>

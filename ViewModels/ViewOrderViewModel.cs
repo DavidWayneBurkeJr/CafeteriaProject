@@ -30,5 +30,8 @@ namespace BatemanCafeteria.ViewModels
         public List<Caf_OrderItemModel> Items { get; set; }
         [DisplayName("Total")]
         public decimal Total { get; set; }
+
+        public Caf_Caterings CateringInfo { get; set; }
+        public res_rooms Room { get; set; }
     }
 }

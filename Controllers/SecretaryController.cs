@@ -99,6 +99,11 @@ namespace BatemanCafeteria.Controllers
                 Total = invoice.Order_total,
                 Items = items
             };
+            if (applicationDbContext.Caf_Caterings.Where(x => x.InvoiceID == id).Any())
+            {
+                viewOrder.CateringInfo = applicationDbContext.Caf_Caterings.Where(x => x.InvoiceID == id).First();
+                viewOrder.Room = applicationDbContext.res_rooms.Where(x => x.room_id == viewOrder.CateringInfo.Reservation.room_id).First();
+            }
 
             return PartialView("_ViewOrder", viewOrder);
         }

@@ -30,7 +30,16 @@
                     <div class="vl"></div>
 
                     <div class="col-md-3">
-                        $@Html.DisplayFor(model => item.Order_total)
+                        @if (item.Order_total == 0.00M)
+                        {
+                            <div class="orderNum">C</div>
+                        }
+                        else
+                        {
+                            <div>
+                                $@Html.DisplayFor(model => item.Order_total)
+                            </div>
+                        }
                     </div>
                     <div class="vl"></div>
 
@@ -67,7 +76,16 @@
                     <div class="vl"></div>
 
                     <div class="col-md-3">
-                        $@Html.DisplayFor(model => item.Order_total)
+                        @if (item.Order_total == 0.00M)
+                        {
+                            <div class="orderNum">C</div>
+                        }
+                        else
+                        {
+                            <div>
+                                $@Html.DisplayFor(model => item.Order_total)
+                            </div>
+                        }
                     </div>
                     <div class="vl"></div>
 
@@ -102,7 +120,16 @@
                     <div class="vl"></div>
 
                     <div class="col-md-3">
-                        $@Html.DisplayFor(model => item.Order_total)
+                        @if (item.Order_total == 0.00M)
+                        {
+                            <div class="orderNum">C</div>
+                        }
+                        else
+                        {
+                            <div>
+                                $@Html.DisplayFor(model => item.Order_total)
+                            </div>
+                        }
                     </div>
                     <div class="vl"></div>
 

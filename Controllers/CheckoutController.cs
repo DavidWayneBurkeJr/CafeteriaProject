@@ -70,26 +70,100 @@ namespace BatemanCafeteria.Controllers
         {
             if (ModelState.IsValid)
             {
-                Caf_Caterings catering = new Caf_Caterings
+                DateTime start = cateringModel.Reservation.res_start;
+                DateTime end = cateringModel.Reservation.res_end;
+
+                DateTime selected = new DateTime(cateringModel.Reservation.res_dt.Year, cateringModel.Reservation.res_dt.Month, cateringModel.Reservation.res_dt.Day, 
+                                                cateringModel.SelectedTime.Hour, cateringModel.SelectedTime.Minute, 0);
+
+                int startVal = DateTime.Compare(selected, start);
+                int endVal = DateTime.Compare(selected, end);
+                if (startVal < 0 || endVal > 0)
                 {
-                    InvoiceID = cateringModel.Invoice.InvoiceID,
-                    res_id = cateringModel.Reservation.res_id,
-                    Instructions = cateringModel.Instructions,
-                    Time = cateringModel.SelectedTime
-                };
-                Caf_InvoiceModel invoice = cateringModel.Invoice;
-                invoice.StatusId = 1;
-                invoice.Order_date = DateTime.Now.ToShortDateString();
-                invoice.Order_time = DateTime.Now.ToShortTimeString();
-                var cart = ShoppingCart.GetCart(this.HttpContext);
-                applicationDbContext.Caf_Invoices.Add(invoice);
-                applicationDbContext.Caf_Caterings.Add(catering);
-                applicationDbContext.SaveChanges();
-                cart.CreateOrder(invoice);
-                return RedirectToAction("Complete", new { id = invoice.InvoiceID });
+                    var resInfo = applicationDbContext.res_reservations.Where(x => x.res_id == cateringModel.Reservation.res_id).First();
+                    Caf_InvoiceModel invoice = new Caf_InvoiceModel
+                    {
+                        Customer_email = resInfo.email_addr,
+                        Customer_name = resInfo.res_name,
+                        Customer_phone = resInfo.phone_ext,
+                        Order_total = 0.00M,
+                        Payment_status = true
+
+                    };
+                    cateringModel = new CateringCheckoutViewModel
+                    {
+                        Reservation = resInfo,
+                        Room = applicationDbContext.res_rooms.Find(resInfo.room_id),
+                        Invoice = invoice,
+                        SelectedTime = resInfo.res_start
+                    };
+                    ModelState.AddModelError("", "Time out of bounds. Please enter a time within the reservation time frame.");
+                    return View(cateringModel);
+                }
+                else if (startVal >= 0 && endVal <= 0)
+                {
+                    Caf_Caterings catering = new Caf_Caterings
+                    {
+                        InvoiceID = cateringModel.Invoice.InvoiceID,
+                        res_id = cateringModel.Reservation.res_id,
+                        Instructions = cateringModel.Instructions,
+                        Time = cateringModel.SelectedTime
+                    };
+                    Caf_InvoiceModel invoice = cateringModel.Invoice;
+                    invoice.StatusId = 1;
+                    invoice.Order_date = DateTime.Now.ToShortDateString();
+                    invoice.Order_time = DateTime.Now.ToShortTimeString();
+                    var cart = ShoppingCart.GetCart(this.HttpContext);
+                    applicationDbContext.Caf_Invoices.Add(invoice);
+                    applicationDbContext.Caf_Caterings.Add(catering);
+                    applicationDbContext.SaveChanges();
+                    cart.CreateOrder(invoice);
+                    return RedirectToAction("Complete", new { id = invoice.InvoiceID });
+                }
+                else
+                {
+                    var resInfo = applicationDbContext.res_reservations.Where(x => x.res_id == cateringModel.Reservation.res_id).First();
+                    Caf_InvoiceModel invoice = new Caf_InvoiceModel
+                    {
+                        Customer_email = resInfo.email_addr,
+                        Customer_name = resInfo.res_name,
+                        Customer_phone = resInfo.phone_ext,
+                        Order_total = 0.00M,
+                        Payment_status = true
+
+                    };
+                    cateringModel = new CateringCheckoutViewModel
+                    {
+                        Reservation = resInfo,
+                        Room = applicationDbContext.res_rooms.Find(resInfo.room_id),
+                        Invoice = invoice,
+                        SelectedTime = resInfo.res_start
+                    };
+
+                    ModelState.AddModelError("", "Something went wrong. Please try again.");
+                    return View(cateringModel);
+                }
 
             }else
             {
+                var resInfo = applicationDbContext.res_reservations.Where(x => x.res_id == cateringModel.Reservation.res_id).First();
+                Caf_InvoiceModel invoice = new Caf_InvoiceModel
+                {
+                    Customer_email = resInfo.email_addr,
+                    Customer_name = resInfo.res_name,
+                    Customer_phone = resInfo.phone_ext,
+                    Order_total = 0.00M,
+                    Payment_status = true
+
+                };
+                cateringModel = new CateringCheckoutViewModel
+                {
+                    Reservation = resInfo,
+                    Room = applicationDbContext.res_rooms.Find(resInfo.room_id),
+                    Invoice = invoice,
+                    SelectedTime = resInfo.res_start
+                };
+
                 ModelState.AddModelError("", "Oops! Something went wrong. Please try again.");
                 return View(cateringModel);
             }
