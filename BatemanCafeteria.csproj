@@ -359,6 +359,7 @@
     <Content Include="Images\breakfast.png" />
     <Content Include="Images\Burger%402x.png" />
     <Content Include="Images\Burger.png" />
+    <Content Include="Images\image.png" />
     <Content Include="Images\MenuItems\ChickenFingers.png" />
     <Content Include="Images\Hot drinks%402x.png" />
     <Content Include="Images\Hot drinks.png" />
@@ -371,6 +372,7 @@
     <Content Include="Images\Symbol 11 – 1.png" />
     <Content Include="Images\Symbol 13 – 1%402x.png" />
     <Content Include="Images\Symbol 13 – 1.png" />
+    <Content Include="Images\user.png" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <None Include="Scripts\jquery-3.3.1.intellisense.js" />
@@ -450,6 +452,7 @@
     <Content Include="Views\Checkout\CateringCheckout.cshtml" />
     <Content Include="Views\Secretary\_ManageOrdersRefresh.cshtml" />
     <Content Include="Views\Secretary\_Edit.cshtml" />
+    <Content Include="Views\Admin\_DeleteUser.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

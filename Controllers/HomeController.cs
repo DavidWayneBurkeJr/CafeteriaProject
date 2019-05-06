@@ -14,6 +14,10 @@ namespace BatemanCafeteria.Controllers
         ApplicationDbContext applicationDbContext = new ApplicationDbContext();
         public ActionResult Index()
         {
+            if (User.IsInRole("Caf_Admin"))
+            {
+                return RedirectToAction("Index", "Admin");
+            }
             return View();
         }
 
