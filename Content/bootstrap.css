@@ -4895,18 +4895,13 @@ select[multiple].input-group-sm > .input-group-btn > .btn {
     list-style: none;
 }
 
-    .nav > li {
-        position: relative;
-        display: block;
-        margin-left: 20%;
-    }
+
 
         .nav > li > a {
             position: relative;
             display: block;
             padding: 10px 15px;
             font-size: x-large;
-            min-width: 212.55px;
             max-height: 50px;
         }
 

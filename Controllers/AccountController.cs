@@ -164,6 +164,8 @@ namespace BatemanCafeteria.Controllers
                     //// var callbackUrl = Url.Action("ConfirmEmail", "Account", new { userId = user.Id, code = code }, protocol: Request.Url.Scheme);
                     //// await UserManager.SendEmailAsync(user.Id, "Confirm your account", "Please confirm your account by clicking <a href=\"" + callbackUrl + "\">here</a>");
                     UserManager.AddToRole(user.Id, "Caf_Secretary");
+                    EmailHelper emailHelper = new EmailHelper();
+                    emailHelper.sendEmail(user.Email, "Your account has been created with the role of: Cafeteria Secretary. Use your email address to login, with the password: " + model.Password + " </br> You are encouraged to change this password to one that is secure and easy for you to remember.", "Account Creation", user.Email);
 
                     return RedirectToAction("ManageUsers", "Admin");
                 }

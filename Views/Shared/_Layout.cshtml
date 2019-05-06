@@ -45,7 +45,48 @@
                     <div class="black-line-underline-right">
                         <ul class="nav navbar-nav navbar-right">
                             <li>@Html.ActionLink("Manage Orders", "ManageOrders", "Secretary")</li>
-                            <li style="min-width: 212.55px;">
+                            <li>
+                                @using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { id = "logoutForm" }))
+                                {
+                                    @Html.AntiForgeryToken()
+
+                                    <a href="javascript:document.getElementById('logoutForm').submit()"><img src="~/Images/shutdown.png" class="logoff" /></a>
+
+                                }
+                            </li>
+                        </ul>
+                        <div class="black-line"></div>
+                        <div class="green-line"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    }
+    else if (this.User.IsInRole("Caf_Admin"))
+    {
+        <div class="navbar navbar-default navbar-fixed-top">
+            <div class="container-fluid">
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <a class="navbar-brand">
+                        <img src="~/Images/logo.png" alt="Bateman Cafeteria">
+                    </a>
+                </div>
+                <div class="navbar-collapse collapse">
+                    <div class="black-line-underline-left">
+                        <ul class="nav navbar-nav navbar-left">
+                            <li><a style="font-style: italic; user-select: none; -ms-user-select: none;">Admin Portal</a></li>
+                        </ul>
+                        <div class="black-line"></div>
+                        <div class="green-line"></div>
+                    </div>
+                    <div class="black-line-underline-right">
+                        <ul class="nav navbar-nav navbar-right">
+                            <li>
                                 @using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { id = "logoutForm" }))
                                 {
                                     @Html.AntiForgeryToken()

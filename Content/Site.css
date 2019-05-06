@@ -584,3 +584,8 @@ input:checked + .slider:before{
     text-overflow: ellipsis;
     overflow: hidden;
 }
+
+.navbar-collapse > div > ul{
+    display: flex;
+    justify-content: space-around;
+}

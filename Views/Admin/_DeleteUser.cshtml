@@ -20,9 +20,13 @@
         {
             @Html.AntiForgeryToken()
 
-            <div class="form-actions no-color">
-                <input type="submit" value="Delete" class="btn btn-danger" />
-                <a class="btn btn-primary close-modal">Cancel</a>
+            <div class="col-md-12">
+                <div class="col-md-6">
+                    <div class="form-actions">
+                        <input type="submit" value="Delete" class="btn btn-danger" />
+                    </div>
+                </div>
+                <div class="col-md-6"><a class="btn btn-primary modal-close-btn">Cancel</a></div>
             </div>
         }
     </div>
