@@ -27,30 +27,45 @@ namespace BatemanCafeteria.Models
                 mail.Subject = subject;
                 string htmlMessage = @"<html>
                                             <body>
-                                                <div style='width: 100 %; height: 200px; position: relative; display: flex; flex-direction: row;'>
-                                                              <div class='line-deco' style='flex-grow: 1;padding-top: 90px;'>
-                                                        <div class='black-line' style='width: 100%;height: 5px;background: #000000;border-radius: 5px;display: inline-block;'>
-                                                            <div class='green-line' style='width: 90%;background: #04954A;height: 4px;border-radius: 5px;margin-top: 10px;margin-right: auto;margin-left: auto;'></div>
-                                                        </div>
-                                                    </div>
-                                                    <div class='logo' style='height: 200px;'>
-                                                        <img src = 'cid:EmbeddedContent_1' style='width: auto; height: 100%;'>
-                                                    </div >
-                                                    <div class='line-deco' style='flex-grow: 1;padding-top: 90px;'>
-                                                        <div class='black-line' style='width: 100%;height: 5px;background: #000000;border-radius: 5px;display: inline-block;'>
-                                                            <div class='green-line' style='width: 90%;background: #04954A;height: 4px;border-radius: 5px;margin-top: 10px;margin-right: auto;margin-left: auto;'></div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div class='email-body' style='margin-left: 80px;margin-right: 80px;'>
-                                                    <div class='greeting' style='padding-bottom: 20px;'>Hello #customer-name#,</div>
-                                                    <div class='message' style='text-indent: 50px;padding-bottom: 100px;'>
+                                                <table style='width: 100 %;'>
+                                                <tr>
+  
+                                                  <th style = 'width: 50%; background-color: white; padding-top: 90px;'>
+   
+
+                                                     <div style = 'width: 100%; background-color: #000000; height: 5px;
+                                                  border-radius: 5px; display: inline-block;'></div>
+                                                       <div style = 'width: 90%; background-color: #04954A; height: 4px;
+                                                  border-radius: 5px; margin-top: 5px; margin-left: auto; margin-right: auto;'></div>
+                                                         </th>
+         
+                                                         <th style = 'width: 100px; height: 150px;'>
+          
+                                                          <img src = 'cid:EmbeddedContent_1' style = 'width: auto; height: 100%;'>
+           
+                                                           </th>
+           
+                                                           <th style = 'width: 50%; background-color: white; padding-top: 90px;'>
+            
+
+                                                              <div style = 'width: 100%; background-color: #000000; height: 5px;
+                                                  border-radius: 5px; display: inline-block;'></div>
+                                                       <div style = 'width: 90%; background-color: #04954A; height: 4px;
+                                                  border-radius: 5px; margin-top: 5px; margin-left: auto; margin-right: auto;'></div>
+                                                         </th>
+         
+                                                       </tr>
+                                                     </table>
+         
+                                                         <div style='margin-left: 80px;margin-right: 80px; margin-top: 20px;'>
+                                                    <div style='padding-bottom: 20px;'>Hello #customer-name#,</div>
+                                                    <div style='text-indent: 50px;padding-bottom: 100px;'>
                                                         #body-message#
                                                     </div>
                                                     <div>Bateman Cafe</div>
-                                                    <hr style = 'color: rgba(0,0,0,0.1);' >
-                                                </ div >
-                                            </ body >
+                                                    <hr style = 'color: rgba(0,0,0,0.1);'>
+                                                </div>
+                                            </body>
                                             </html>";
                 htmlMessage = htmlMessage.Replace("#customer-name#", toName);
                 htmlMessage = htmlMessage.Replace("#body-message#", message);

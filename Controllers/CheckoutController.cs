@@ -200,6 +200,12 @@ namespace BatemanCafeteria.Controllers
         {
             if (ModelState.IsValid)
             {
+                var cart = ShoppingCart.GetCart(this.HttpContext);
+                if (cart.GetCount() == 0)
+                {
+                    ViewBag.Errors("You appear to have an empty cart. Please make sure you put items in your cart.");
+                    return View(invoice);
+                }
                 invoice.StatusId = 1;
                 invoice.Order_date = DateTime.Now.ToShortDateString();
                 invoice.Order_time = DateTime.Now.ToShortTimeString();
@@ -218,8 +224,8 @@ namespace BatemanCafeteria.Controllers
                     invoice.Customer_phone = phone;
                 }
                 invoice.Payment_status = false;
-                var cart = ShoppingCart.GetCart(this.HttpContext);
                 invoice.Order_total = cart.GetTotal();
+                
                 applicationDbContext.Caf_Invoices.Add(invoice);
                 applicationDbContext.SaveChanges();
                 cart.CreateOrder(invoice);
@@ -227,7 +233,7 @@ namespace BatemanCafeteria.Controllers
             }
             else
             {
-                ViewBag.Errors("Sorry, something went wrong. Please fill out all fields.");
+                ViewBag.Errors("Sorry, something went wrong. Please fill out all fields and check to make sure your cart is not empty.");
                 return View(invoice);
             }
         }

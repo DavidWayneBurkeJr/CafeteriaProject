@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text;
 using System.Web;
 using System.Web.Mvc;
 using BatemanCafeteria.ViewModels;
@@ -112,7 +113,7 @@ namespace BatemanCafeteria.Models
             decimal orderTotal = 0;
 
             var cartItems = GetCartItems();
-
+            List<Caf_OrderItemModel> order = new List<Caf_OrderItemModel>();
             foreach (var item in cartItems)
             {
                 var orderDetail = new Caf_OrderItemModel
@@ -126,19 +127,34 @@ namespace BatemanCafeteria.Models
                 orderTotal += (item.Quantity * item.MenuItem.Price);
 
                 applicationDbContext.Caf_OrderItems.Add(orderDetail);
+                order.Add(orderDetail);
             }
             invoice.Order_total = orderTotal;
 
             applicationDbContext.SaveChanges();
             EmailHelper email = new EmailHelper();
+            string listMessage = ItemsToHtml(order);
             email.sendEmail(invoice.Customer_email,
-                "Thank you for your order! Your food will start cooking shortly. Your order number is " + invoice.InvoiceID,
+                "Thank you for your order! Your food will start cooking shortly. Your order number is " + invoice.InvoiceID + ". <br/>" + listMessage,
                 "Cafeteria Order Confirmation",
                 invoice.Customer_name);
             EmptyCart();
             return invoice.InvoiceID;
         }
 
+
+        public string ItemsToHtml(List<Caf_OrderItemModel> items)
+        {
+            StringBuilder stringBuilder = new StringBuilder();
+            stringBuilder.Append("<table style='width: 100%;text-align: left;'><tr><th>Item</th><th>Special Instructions</th><th>Quantity</th><th>Price</th></tr>");
+            foreach(var item in items)
+            {
+                stringBuilder.Append("<tr><td>" + item.MenuItem.Title + "</td><td><span style='text-overflow: ellipsis; overflow: hidden; font-style: italic; color: black; background-color: #ffff00; font-size: small;'>" + item.Special_instructions + "</span></td>");
+                stringBuilder.Append("<td>x" + item.Quantity + "</td><td>$" + item.UnitPrice + "</td></tr>");
+            }
+            stringBuilder.Append("</table>");
+            return stringBuilder.ToString();
+        }
 
         public string GetCartID(HttpContextBase context)
         {
