@@ -32,7 +32,6 @@ namespace BatemanCafeteria.Controllers
         {
             var categories = applicationDbContext.Caf_FoodCategories.ToList();
             ViewBag.Categories = new SelectList(categories, "CategoryId", "Category");
-            if(TempData["Errors"] != null) { ViewBag.Errors = TempData["Errors"].ToString(); }
             if (ModelState.IsValid)
             {
 
@@ -44,24 +43,25 @@ namespace BatemanCafeteria.Controllers
                 && !string.Equals(extension, ".png", StringComparison.OrdinalIgnoreCase)
                 && !string.Equals(extension, ".jpeg", StringComparison.OrdinalIgnoreCase))
                 {
-                    ModelState.AddModelError("", "Selected file must be an image of type .png, .jpg");
+                    TempData["Errors"] = "Selected file must be an image of type .png, .jpg";
+                    return RedirectToAction("EditIndex");
 
-                    return View(menuItem);
                 }
 
                 try
                 {
                     if (!menuItem.ImageFile.InputStream.CanRead)
                     {
-                        ModelState.AddModelError("", "Selected file must be an image of type .png, .jpg");
-                        return View(menuItem);
+                        TempData["Errors"] = "Selected file must be an image of type .png, .jpg";
+                        return RedirectToAction("EditIndex");
+
                     }
 
-                    if(menuItem.ImageFile.ContentLength < 512)
+                    if (menuItem.ImageFile.ContentLength < 512)
                     {
-                        ModelState.AddModelError("", "Selected file must be an image of type .png, .jpg");
+                        TempData["Errors"] = "Selected file must be an image of type .png, .jpg";
+                        return RedirectToAction("EditIndex");
 
-                        return View(menuItem);
                     }
 
                     byte[] buffer = new byte[512];
@@ -70,9 +70,9 @@ namespace BatemanCafeteria.Controllers
                     if(Regex.IsMatch(content, @"<script|<html|<head|<title|<body|<pre|<table|<a\s+href|<img|<plaintext|<cross\-domain\-policy",
                         RegexOptions.IgnoreCase | RegexOptions.CultureInvariant | RegexOptions.Multiline))
                     {
-                        ModelState.AddModelError("", "Selected file must be an image of type .png, .jpg");
+                        TempData["Errors"] = "Selected file must be an image of type .png, .jpg";
+                        return RedirectToAction("EditIndex");
 
-                        return View(menuItem);
                     }
                 }
                 catch (Exception)
@@ -92,8 +92,8 @@ namespace BatemanCafeteria.Controllers
                 }
                 catch (System.Data.Entity.Infrastructure.DbUpdateException)
                 {
-                    ModelState.AddModelError("", menuItem.Title + " already exists.");
-                    return View(menuItem);
+                    TempData["Errors"] = "Error in creating menu item. " + menuItem.Title + " already exists.";
+                    return RedirectToAction("EditIndex");
                 }
                 if (menuItem.FoodCategory.Category.Equals("DailySpecial"))
                 {
@@ -102,7 +102,7 @@ namespace BatemanCafeteria.Controllers
                 return RedirectToAction("EditIndex", "Menu", new { category = category });
             }
             TempData["Errors"] = "Error in creating menu item. Please try again.";
-            return View(menuItem);
+            return RedirectToAction("EditIndex");
         }
 
         [HttpGet]

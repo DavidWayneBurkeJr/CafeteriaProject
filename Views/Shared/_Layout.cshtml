@@ -49,7 +49,7 @@
                                 @using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { id = "logoutForm" }))
                                 {
                                     @Html.AntiForgeryToken()
-
+                                    <a href="@Url.Action("Index", "Manage", routeValues: null)"><img src="~/Images/user.png" class="manage-account" /></a>
                                     <a href="javascript:document.getElementById('logoutForm').submit()"><img src="~/Images/shutdown.png" class="logoff" /></a>
 
                                 }
@@ -90,7 +90,7 @@
                                 @using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { id = "logoutForm" }))
                                 {
                                     @Html.AntiForgeryToken()
-
+                                    <a href="@Url.Action("Index", "Manage", routeValues: null)"><img src="~/Images/user.png" class="manage-account" /></a>
                                     <a href="javascript:document.getElementById('logoutForm').submit()"><img src="~/Images/shutdown.png" class="logoff" /></a>
 
                                 }

@@ -298,6 +298,7 @@
     <Compile Include="ViewModels\CateringCheckoutViewModel.cs" />
     <Compile Include="ViewModels\CateringVerficationViewModel.cs" />
     <Compile Include="ViewModels\EditMenuViewModel.cs" />
+    <Compile Include="ViewModels\ImageViewModel.cs" />
     <Compile Include="ViewModels\ManageOrdersViewModel.cs" />
     <Compile Include="ViewModels\OrderStatusViewModel.cs" />
     <Compile Include="ViewModels\ShoppingCartRemoveViewModel.cs" />
@@ -453,6 +454,8 @@
     <Content Include="Views\Secretary\_ManageOrdersRefresh.cshtml" />
     <Content Include="Views\Secretary\_Edit.cshtml" />
     <Content Include="Views\Admin\_DeleteUser.cshtml" />
+    <Content Include="Views\Admin\ManageImages.cshtml" />
+    <Content Include="Views\Admin\DeleteImage.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
