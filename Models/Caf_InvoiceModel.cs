@@ -39,5 +39,9 @@ namespace BatemanCafeteria.Models
         public int StatusId { get; set; }
         public virtual Caf_FoodStatusModel FoodStatus { get; set; }
         public List<Caf_OrderItemModel> Order_items { get; set; }
+
+        //[Required]
+        //[ScaffoldColumn(false)]
+        //public string OSUsername { get; set; }
     }
 }
