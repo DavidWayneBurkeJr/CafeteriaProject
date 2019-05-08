@@ -461,6 +461,7 @@
     <Content Include="Views\Admin\_DeleteUser.cshtml" />
     <Content Include="Views\Admin\ManageImages.cshtml" />
     <Content Include="Views\Admin\DeleteImage.cshtml" />
+    <Content Include="Views\Admin\ManageServiceUsers.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

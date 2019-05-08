@@ -132,11 +132,30 @@ namespace BatemanCafeteria.Controllers
             }
         }
 
-        //[HttpGet]
-        //public ActionResult ManageCategories()
-        //{
+        [HttpGet]
+        public ActionResult ManageServiceUsers()
+        {
+            List<Caf_ServiceUsers> users = applicationDbContext.Caf_ServiceUsers.ToList();
+            return View(users);
+        }
 
-        //}
+        public ActionResult BanUser(string userName)
+        {
+            Caf_ServiceUsers user = applicationDbContext.Caf_ServiceUsers.Where(x => x.Username == userName).FirstOrDefault();
+            if(user != null)
+            {
+                if (user.IsBanned)
+                {
+                    user.IsBanned = false;
+                }
+                else
+                {
+                    user.IsBanned = true;
+                }
+                applicationDbContext.SaveChanges();
+            }
+            return RedirectToAction("ManageServiceUsers");
+        }
 
     }
 }
