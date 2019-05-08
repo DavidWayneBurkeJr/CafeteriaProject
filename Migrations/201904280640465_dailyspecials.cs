@@ -23,9 +23,9 @@ namespace BatemanCafeteria.Migrations
         
         public override void Down()
         {
-            DropForeignKey("dbo.Caf_DailySpecials", "MenuID", "dbo.Caf_MenuItemModel");
-            DropIndex("dbo.Caf_DailySpecials", new[] { "MenuID" });
-            DropTable("dbo.Caf_DailySpecials");
+            DropForeignKey("Caf_DailySpecials", "MenuID", "Caf_MenuItemModel");
+            DropIndex("Caf_DailySpecials", new[] { "MenuID" });
+            DropTable("Caf_DailySpecials");
         }
     }
 }

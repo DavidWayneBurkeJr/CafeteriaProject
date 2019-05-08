@@ -30,6 +30,7 @@ namespace BatemanCafeteria.Models
         public virtual DbSet<res_rooms> res_rooms { get; set; }
         public virtual DbSet<Caf_Caterings> Caf_Caterings { get; set; }
         public virtual DbSet<Caf_DailySpecials> Caf_DailySpecials { get; set; }
+        public virtual DbSet<Caf_ServiceUsers> Caf_ServiceUsers { get; set; }
         #endregion tables
 
         public static ApplicationDbContext Create()

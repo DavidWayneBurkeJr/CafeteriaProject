@@ -27,11 +27,11 @@ namespace BatemanCafeteria.Migrations
         
         public override void Down()
         {
-            DropForeignKey("dbo.Caf_Caterings", "res_id", "dbo.res_reservations");
-            DropForeignKey("dbo.Caf_Caterings", "InvoiceID", "dbo.Caf_InvoiceModel");
-            DropIndex("dbo.Caf_Caterings", new[] { "res_id" });
-            DropIndex("dbo.Caf_Caterings", new[] { "InvoiceID" });
-            DropTable("dbo.Caf_Caterings");
+            DropForeignKey("Caf_Caterings", "res_id", "res_reservations");
+            DropForeignKey("Caf_Caterings", "InvoiceID", "Caf_InvoiceModel");
+            DropIndex("Caf_Caterings", new[] { "res_id" });
+            DropIndex("Caf_Caterings", new[] { "InvoiceID" });
+            DropTable("Caf_Caterings");
         }
     }
 }

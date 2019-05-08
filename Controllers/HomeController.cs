@@ -14,6 +14,10 @@ namespace BatemanCafeteria.Controllers
         ApplicationDbContext applicationDbContext = new ApplicationDbContext();
         public ActionResult Index()
         {
+            if(TempData["Errors"] != null)
+            {
+                ViewBag.Errors = TempData["Errors"].ToString();
+            }
             if (User.IsInRole("Caf_Admin"))
             {
                 return RedirectToAction("Index", "Admin");

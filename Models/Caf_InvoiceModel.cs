@@ -1,9 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Web;
 
 namespace BatemanCafeteria.Models
 {
@@ -15,7 +12,7 @@ namespace BatemanCafeteria.Models
         [DisplayName("Name")]
         [StringLength(160)]
         [Required]
-        public string Customer_name { get; set;}
+        public string Customer_name { get; set; }
         [DisplayName("Email Address")]
         [RegularExpression(@"[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,4}",
             ErrorMessage = "Email is is not valid.")]
@@ -40,8 +37,6 @@ namespace BatemanCafeteria.Models
         public virtual Caf_FoodStatusModel FoodStatus { get; set; }
         public List<Caf_OrderItemModel> Order_items { get; set; }
 
-        //[Required]
-        //[ScaffoldColumn(false)]
-        //public string OSUsername { get; set; }
+        public string Username { get; set; }
     }
 }

@@ -18,13 +18,13 @@ namespace BatemanCafeteria.Migrations
         
         public override void Down()
         {
-            DropIndex("dbo.Caf_MenuItemModel", new[] { "Title" });
-            AlterColumn("dbo.Caf_InvoiceModel", "Customer_phone", c => c.String(unicode: false));
-            AlterColumn("dbo.Caf_InvoiceModel", "Customer_name", c => c.String(unicode: false));
-            AlterColumn("dbo.Caf_MenuItemModel", "Category", c => c.String(unicode: false));
-            AlterColumn("dbo.Caf_MenuItemModel", "Description", c => c.String(unicode: false));
-            AlterColumn("dbo.Caf_MenuItemModel", "Title", c => c.String(maxLength: 450, storeType: "nvarchar"));
-            CreateIndex("dbo.Caf_MenuItemModel", "Title", unique: true);
+            DropIndex("Caf_MenuItemModel", new[] { "Title" });
+            AlterColumn("Caf_InvoiceModel", "Customer_phone", c => c.String(unicode: false));
+            AlterColumn("Caf_InvoiceModel", "Customer_name", c => c.String(unicode: false));
+            AlterColumn("Caf_MenuItemModel", "Category", c => c.String(unicode: false));
+            AlterColumn("Caf_MenuItemModel", "Description", c => c.String(unicode: false));
+            AlterColumn("Caf_MenuItemModel", "Title", c => c.String(maxLength: 450, storeType: "nvarchar"));
+            CreateIndex("Caf_MenuItemModel", "Title", unique: true);
         }
     }
 }

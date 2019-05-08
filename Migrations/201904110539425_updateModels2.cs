@@ -12,7 +12,7 @@ namespace BatemanCafeteria.Migrations
         
         public override void Down()
         {
-            AlterColumn("dbo.Caf_InvoiceModel", "Order_date", c => c.DateTime(nullable: false, precision: 0));
+            AlterColumn("Caf_InvoiceModel", "Order_date", c => c.DateTime(nullable: false, precision: 0));
         }
     }
 }

@@ -169,6 +169,7 @@ C:\Users\David\source\repos\BatemanCafeteria\bin\MySql.Data.xml
 C:\Users\David\source\repos\BatemanCafeteria\bin\MySql.Data.Entity.EF6.xml
 C:\Users\David\source\repos\BatemanCafeteria\bin\Newtonsoft.Json.pdb
 C:\Users\David\source\repos\BatemanCafeteria\bin\Newtonsoft.Json.xml
+C:\Users\David\source\repos\BatemanCafeteria\obj\Debug\BatemanCafeteria.csprojAssemblyReference.cache
 C:\Users\David\source\repos\BatemanCafeteria\obj\Debug\BatemanCafeteria.Migrations.init.resources
 C:\Users\David\source\repos\BatemanCafeteria\obj\Debug\BatemanCafeteria.Migrations.EditModelNames.resources
 C:\Users\David\source\repos\BatemanCafeteria\obj\Debug\BatemanCafeteria.Migrations._46update.resources
@@ -185,10 +186,10 @@ C:\Users\David\source\repos\BatemanCafeteria\obj\Debug\BatemanCafeteria.Migratio
 C:\Users\David\source\repos\BatemanCafeteria\obj\Debug\BatemanCafeteria.Migrations.dummymodel.resources
 C:\Users\David\source\repos\BatemanCafeteria\obj\Debug\BatemanCafeteria.Migrations.cateringstable.resources
 C:\Users\David\source\repos\BatemanCafeteria\obj\Debug\BatemanCafeteria.Migrations.dailyspecials.resources
+C:\Users\David\source\repos\BatemanCafeteria\obj\Debug\BatemanCafeteria.Migrations.modelfix.resources
 C:\Users\David\source\repos\BatemanCafeteria\obj\Debug\BatemanCafeteria.csproj.GenerateResource.cache
 C:\Users\David\source\repos\BatemanCafeteria\obj\Debug\BatemanCafeteria.csproj.CoreCompileInputs.cache
 C:\Users\David\source\repos\BatemanCafeteria\obj\Debug\BatemanCafeteria.csproj.CopyComplete
 C:\Users\David\source\repos\BatemanCafeteria\obj\Debug\BatemanCafeteria.dll
 C:\Users\David\source\repos\BatemanCafeteria\obj\Debug\BatemanCafeteria.pdb
-C:\Users\David\source\repos\BatemanCafeteria\obj\Debug\BatemanCafeteria.csprojAssemblyReference.cache
-C:\Users\David\source\repos\BatemanCafeteria\obj\Debug\BatemanCafeteria.Migrations.modelfix.resources
+C:\Users\David\source\repos\BatemanCafeteria\obj\Debug\BatemanCafeteria.Migrations.userTracking.resources

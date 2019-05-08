@@ -272,6 +272,10 @@
     <Compile Include="Migrations\201905020327511_modelfix.Designer.cs">
       <DependentUpon>201905020327511_modelfix.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201905081750150_userTracking.cs" />
+    <Compile Include="Migrations\201905081750150_userTracking.Designer.cs">
+      <DependentUpon>201905081750150_userTracking.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\ApplicationDbContext.cs" />
@@ -280,6 +284,7 @@
     <Compile Include="Models\Caf_DailySpecials.cs" />
     <Compile Include="Models\Caf_FoodCategories.cs" />
     <Compile Include="Models\Caf_FoodStatusModel.cs" />
+    <Compile Include="Models\Caf_ServiceUsers.cs" />
     <Compile Include="Models\EmailHelper.cs" />
     <Compile Include="Models\ErrorLogging.cs" />
     <Compile Include="Models\error_log.cs" />
@@ -524,6 +529,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201905020327511_modelfix.resx">
       <DependentUpon>201905020327511_modelfix.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201905081750150_userTracking.resx">
+      <DependentUpon>201905081750150_userTracking.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

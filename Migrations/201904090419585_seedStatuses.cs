@@ -8,7 +8,7 @@ namespace BatemanCafeteria.Migrations
         public override void Up()
         {
             CreateTable(
-                "dbo.FoodStatusModels",
+                "FoodStatusModels",
                 c => new
                     {
                         StatusId = c.Int(nullable: false, identity: true),
@@ -16,17 +16,17 @@ namespace BatemanCafeteria.Migrations
                     })
                 .PrimaryKey(t => t.StatusId);
             
-            AddColumn("dbo.Caf_InvoiceModel", "StatusId", c => c.Int(nullable: false));
-            CreateIndex("dbo.Caf_InvoiceModel", "StatusId");
-            AddForeignKey("dbo.Caf_InvoiceModel", "StatusId", "dbo.FoodStatusModels", "StatusId", cascadeDelete: true);
+            AddColumn("Caf_InvoiceModel", "StatusId", c => c.Int(nullable: false));
+            CreateIndex("Caf_InvoiceModel", "StatusId");
+            AddForeignKey("Caf_InvoiceModel", "StatusId", "FoodStatusModels", "StatusId", cascadeDelete: true);
         }
         
         public override void Down()
         {
-            DropForeignKey("dbo.Caf_InvoiceModel", "StatusId", "dbo.FoodStatusModels");
-            DropIndex("dbo.Caf_InvoiceModel", new[] { "StatusId" });
-            DropColumn("dbo.Caf_InvoiceModel", "StatusId");
-            DropTable("dbo.FoodStatusModels");
+            DropForeignKey("Caf_InvoiceModel", "StatusId", "FoodStatusModels");
+            DropIndex("Caf_InvoiceModel", new[] { "StatusId" });
+            DropColumn("Caf_InvoiceModel", "StatusId");
+            DropTable("FoodStatusModels");
         }
     }
 }

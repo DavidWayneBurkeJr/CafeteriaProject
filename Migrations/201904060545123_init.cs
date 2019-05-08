@@ -8,7 +8,7 @@ namespace BatemanCafeteria.Migrations
         public override void Up()
         {
             CreateTable(
-                "dbo.CartModels",
+                "CartModels",
                 c => new
                     {
                         RecordID = c.Int(nullable: false, identity: true),
@@ -18,7 +18,7 @@ namespace BatemanCafeteria.Migrations
                 .PrimaryKey(t => t.RecordID);
             
             CreateTable(
-                "dbo.InvoiceModels",
+                "InvoiceModels",
                 c => new
                     {
                         InvoiceID = c.Int(nullable: false, identity: true),
@@ -33,7 +33,7 @@ namespace BatemanCafeteria.Migrations
                 .PrimaryKey(t => t.InvoiceID);
             
             CreateTable(
-                "dbo.OrderItemModels",
+                "OrderItemModels",
                 c => new
                     {
                         OrderItemID = c.Int(nullable: false, identity: true),
@@ -44,11 +44,11 @@ namespace BatemanCafeteria.Migrations
                         Special_instructions = c.String(unicode: false),
                     })
                 .PrimaryKey(t => t.OrderItemID)
-                .ForeignKey("dbo.InvoiceModels", t => t.InvoiceID, cascadeDelete: true)
+                .ForeignKey("InvoiceModels", t => t.InvoiceID, cascadeDelete: true)
                 .Index(t => t.InvoiceID);
             
             CreateTable(
-                "dbo.MenuItemModels",
+                "MenuItemModels",
                 c => new
                     {
                         MenuID = c.Int(nullable: false, identity: true),

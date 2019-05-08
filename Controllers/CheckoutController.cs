@@ -15,15 +15,53 @@ namespace BatemanCafeteria.Controllers
         // GET: Checkout
         public ActionResult Checkout()
         {
-            var cart = ShoppingCart.GetCart(this.HttpContext);
-            if (cart.GetCartItems().Count() == 0)
+            string userName = Environment.UserName.ToString();
+            Caf_ServiceUsers user = applicationDbContext.Caf_ServiceUsers.Where(x => x.Username == userName).FirstOrDefault();
+            if (user == null)
             {
-                return RedirectToAction("CartView", "ShoppingCart");
+                Caf_ServiceUsers newUser = new Caf_ServiceUsers
+                {
+                    DomainName = Environment.UserDomainName,
+                    MachineName = Environment.MachineName,
+                    Username = Environment.UserName,
+                    IsBanned = false
+                };
+                applicationDbContext.Caf_ServiceUsers.Add(newUser);
+                applicationDbContext.SaveChanges();
+                var cart = ShoppingCart.GetCart(this.HttpContext);
+                if (cart.GetCartItems().Count() == 0)
+                {
+                    return RedirectToAction("CartView", "ShoppingCart");
+                }
+                else
+                {
+                    return View();
+                }
+            }
+            else if(user.IsBanned == false)
+            {
+                user.DomainName = Environment.UserDomainName;
+                user.MachineName = Environment.MachineName;
+                applicationDbContext.SaveChanges();
+                var cart = ShoppingCart.GetCart(this.HttpContext);
+                if (cart.GetCartItems().Count() == 0)
+                {
+                    return RedirectToAction("CartView", "ShoppingCart");
+                }
+                else
+                {
+                    return View();
+                }
             }
             else
             {
-                return View();
+                user.DomainName = Environment.UserDomainName;
+                user.MachineName = Environment.MachineName;
+                applicationDbContext.SaveChanges();
+                TempData["Errors"] = "You have been banned from using this system due to misuse. If you believe this is an error, contact your system admin.";
+                return RedirectToAction("Index", "Home");
             }
+
         }
 
         [HttpGet]
@@ -198,6 +236,11 @@ namespace BatemanCafeteria.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Checkout(Caf_InvoiceModel invoice)
         {
+            if(applicationDbContext.Caf_ServiceUsers.Where(x => x.Username == Environment.UserName).FirstOrDefault().IsBanned)
+            {
+                TempData["Errors"] = "You have been banned from using this system due to misuse. If you believe this is an error, contact your system admin.";
+                return RedirectToAction("Index", "Home");
+            }
             if (ModelState.IsValid)
             {
                 var cart = ShoppingCart.GetCart(this.HttpContext);
