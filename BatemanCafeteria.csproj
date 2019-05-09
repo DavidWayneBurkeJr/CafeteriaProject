@@ -375,10 +375,10 @@
     <Content Include="Images\logo.png" />
     <Content Include="Images\shutdown.png" />
     <Content Include="Images\snacks.png" />
-    <Content Include="Images\Symbol 11 – 1%402x.png" />
-    <Content Include="Images\Symbol 11 – 1.png" />
-    <Content Include="Images\Symbol 13 – 1%402x.png" />
-    <Content Include="Images\Symbol 13 – 1.png" />
+    <Content Include="Images\sides2.png" />
+    <Content Include="Images\sides.png" />
+    <Content Include="Images\dailyspecial2.png" />
+    <Content Include="Images\dailyspecial.png" />
     <Content Include="Images\user.png" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
