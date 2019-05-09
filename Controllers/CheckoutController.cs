@@ -268,6 +268,7 @@ namespace BatemanCafeteria.Controllers
                 }
                 invoice.Payment_status = false;
                 invoice.Order_total = cart.GetTotal();
+                invoice.Username = Environment.UserName;
                 
                 applicationDbContext.Caf_Invoices.Add(invoice);
                 applicationDbContext.SaveChanges();

@@ -37,6 +37,15 @@
             <dd>
                 $@Html.DisplayFor(model => model.Total)
             </dd>
+            @if (Model.Username != null)
+            {
+                <dt>
+                    @Html.DisplayNameFor(model => model.Username)
+                </dt>
+                <dd>
+                    @Html.ActionLink(Model.Username, "BanUser", new { userName = Model.Username })
+                </dd>
+            }
 
         </dl>
         @if (Model.CateringInfo != null)

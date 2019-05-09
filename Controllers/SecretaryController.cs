@@ -97,7 +97,8 @@ namespace BatemanCafeteria.Controllers
                 Date = invoice.Order_date,
                 Time = invoice.Order_time,
                 Total = invoice.Order_total,
-                Items = items
+                Items = items,
+                Username = invoice.Username
             };
             if (applicationDbContext.Caf_Caterings.Where(x => x.InvoiceID == id).Any())
             {
@@ -214,6 +215,41 @@ namespace BatemanCafeteria.Controllers
         public ActionResult CateringOrder()
         {
             return RedirectToAction("Index", "Home");
+        }
+
+        [HttpGet]
+        public ActionResult BanUser(string userName)
+        {
+            Caf_ServiceUsers user = applicationDbContext.Caf_ServiceUsers.Where(x => x.Username == userName).FirstOrDefault();
+            if(user != null)
+            {
+                return View(user);
+            }
+            else
+            {
+                TempData["Errors"] = "Could not complete request. Please try again.";
+                return RedirectToAction("ManageOrders");
+            }
+        }
+
+        [HttpPost]
+        public ActionResult BanUser(Caf_ServiceUsers user)
+        {
+            if (ModelState.IsValid)
+            {
+                user = applicationDbContext.Caf_ServiceUsers.Where(x => x.Username == user.Username).FirstOrDefault();
+                user.IsBanned = true;
+                applicationDbContext.SaveChanges();
+                EmailHelper emailHelper = new EmailHelper();
+                string email = applicationDbContext.Caf_Invoices.Where(x => x.Username == user.Username).First().Customer_email;
+                emailHelper.sendEmail(email, "Due to misuse of the service, you have been banned until further notice. You may still order in person. If you feel like this is a mistake, contact the system admin.", "Cafeteria Service Ban", email);
+                return RedirectToAction("ManageOrders");
+            }
+            else
+            {
+                TempData["Errors"] = "Something went wrong. Please try again.";
+                return RedirectToAction("ManageOrders");
+            }
         }
 
     }
